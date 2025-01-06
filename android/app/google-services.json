@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011408310830",
+    "project_id": "expolo",
+    "storage_bucket": "expolo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011408310830:android:6c5feb3f545adda39f45bf",
+        "android_client_info": {
+          "package_name": "com.genefied.expolo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsFGdJ4by6tK-aq4XEEQ9rghyK6mxpX4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
