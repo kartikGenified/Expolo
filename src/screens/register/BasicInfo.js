@@ -343,15 +343,15 @@ const BasicInfo = ({ navigation, route }) => {
         for(let i=0;i<values;i++)
         {
           console.log("form values are being printed", values[i])
-          if(values[i].label == "aadhar" && values[i].required)
+          if(values[i].label.toLowerCase() == "aadhar" && values[i].required)
           {
             setAadhaarRequired(true)
           }
-          if(values[i].label == "pan" && values[i].required)
+          if(values[i].label.toLowerCase()== "pan" && values[i].required)
           {
             setPanRequired(true)
           }
-          if(values[i].label == "gstin" && values[i].required)
+          if(values[i].label.toLowerCase() == "gstin" && values[i].required)
           {
             setGstinRequired(true)
           }
