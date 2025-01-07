@@ -52,7 +52,7 @@ const RedeemedHistory = ({ navigation }) => {
 
   }
   console.log("appUserData",appUserData)
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderExpolo.gif')).uri;
   const noData = Image.resolveAssetSource(require('../../../assets/gif/noData.gif')).uri;
   let startDate,endDate
   const [
@@ -303,7 +303,7 @@ const RedeemedHistory = ({ navigation }) => {
             <View style={styles.modalView}>
               <Image style={{ height: 80, width: 80, marginTop: 20 }} source={require('../../../assets/images/gift1.png')}></Image>
               <PoppinsTextMedium style={{ color: 'black', width: 300, marginTop: 20 }} content={t("Do you want to redeem your points with an amazing gift or cashback")}></PoppinsTextMedium>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20,width:'100%'}}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20,width:'100%'}}>
                 <TouchableOpacity onPress={() => {
                   console.log("gift")
                   setModalVisible(false)
@@ -313,7 +313,7 @@ const RedeemedHistory = ({ navigation }) => {
                   <Image style={{ height: 20, width: 20, resizeMode: "contain" }} source={require('../../../assets/images/giftWhite.png')}></Image>
                   <PoppinsTextMedium style={{ color: 'white', marginLeft: 10 }} content={t("Gift")}></PoppinsTextMedium>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
+                {/* <TouchableOpacity onPress={() => {
                   console.log("Coupons")
                   setModalVisible(false)
                   navigation.navigate('RedeemCoupons')
@@ -321,15 +321,15 @@ const RedeemedHistory = ({ navigation }) => {
                 }} style={{ alignItems: "center", justifyContent: "center", backgroundColor: ternaryThemeColor, flexDirection: "row", height: 40, width: 100, borderRadius: 10 }}>
                   <Image style={{ height: 20, width: 20, resizeMode: "contain" }} source={require('../../../assets/images/giftWhite.png')}></Image>
                   <PoppinsTextMedium style={{ color: 'white', marginLeft: 10 }} content={t("Coupons")}></PoppinsTextMedium>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
+                </TouchableOpacity> */}
+                {/* <TouchableOpacity onPress={() => {
                   console.log("cashback")
                   setModalVisible(false)
                   navigation.navigate('RedeemCashback')
                 }} style={{ alignItems: "center", justifyContent: "center", backgroundColor: '#0E2659', flexDirection: "row", height: 40, width: 120, borderRadius: 10 }}>
                   <Image style={{ height: 20, width: 20, resizeMode: "contain" }} source={require('../../../assets/images/giftWhite.png')}></Image>
                   <PoppinsTextMedium style={{ color: 'white', marginLeft: 10 }} content={t("Cashback")}></PoppinsTextMedium>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
 
             </View>
@@ -478,7 +478,7 @@ const RedeemedHistory = ({ navigation }) => {
 
       <View style={{ alignItems: "center", justifyContent: "flex-start", flexDirection: "row", width: '100%', marginTop: 10, height: 40, marginLeft: 20 }}>
         <TouchableOpacity onPress={() => {
-          navigation.goBack()
+          navigation.navigate("Passbook")
         }}>
           <Image style={{ height: 24, width: 24, resizeMode: 'contain', marginLeft: 10 }} source={require('../../../assets/images/blackBack.png')}></Image>
 

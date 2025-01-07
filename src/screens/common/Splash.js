@@ -133,7 +133,7 @@ const Splash = ({ navigation }) => {
     console.log("current version check", currentVersion);
     dispatch(setAppVersion(currentVersion));
   }
-  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/SplashGenefied.gif')).uri;
+  const gifUri = Image.resolveAssetSource(require('../../../assets/gif/SplashExpolo.gif')).uri;
   // generating functions and constants for API use cases---------------------
   const [
     getAppTheme,
@@ -252,9 +252,9 @@ const Splash = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    console.log("currentVersion", currentVersion);
+    console.log("CV225", currentVersion);
     if (isConnected.isConnected) {
-      getMinVersionSupportFunc(currentVersion);
+      getMinVersionSupportFunc(VersionCheck.getCurrentVersion());
 
       const fetchTerms = async () => {
         // const credentials = await Keychain.getGenericPassword();
@@ -357,7 +357,7 @@ const Splash = ({ navigation }) => {
                           index: "0",
                           routes: [{ name: "SelectUser" }],
                         });
-                      }, 3000);
+                      }, 1000);
                   }
                 }
               } else {
@@ -419,7 +419,7 @@ const Splash = ({ navigation }) => {
               minVersionSupport && !jsonValue &&
                 setTimeout(() => {
                   navigation.navigate("SelectUser");
-                }, 5000);
+                }, 1000);
             } else {
               minVersionSupport &&
                 setTimeout(() => {
@@ -544,7 +544,7 @@ const Splash = ({ navigation }) => {
                           index: "0",
                           routes: [{ name: "SelectUser" }],
                         });
-                      },2000)
+                      },1000)
                   
                     }
                     
@@ -1182,7 +1182,7 @@ const Splash = ({ navigation }) => {
       if (value === "Yes" && !jsonValue) {
         setTimeout(()=>{
           navigation.navigate("SelectUser");
-        },2000)
+        },1000)
       } else {
         setTimeout(()=>{
           navigation.navigate("Introduction");

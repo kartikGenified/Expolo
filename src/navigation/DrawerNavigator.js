@@ -474,91 +474,71 @@ const CustomDrawer = () => {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "auto",
-      }}
-    >
-      {error && (
-        <ErrorModal
-          modalClose={modalClose}
-          message={message}
-          openModal={error}
-        ></ErrorModal>
-      )}
+    <View style={{ backgroundColor: '#DDDDDD', alignItems: "center", justifyContent: 'center', width: '100%', height: '100%' }}>
+      {error && <ErrorModal
+        modalClose={modalClose}
+
+        message={message}
+        openModal={error}></ErrorModal>}
       <View
         style={{
-          width: "100%",
+          width: '100%',
           height: 125,
           backgroundColor: ternaryThemeColor,
           borderBottomLeftRadius: 30,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {profileImage ? (
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        {profileImage ?
           <Image
             style={{
               height: 60,
               width: 60,
               borderRadius: 30,
               marginLeft: 10,
-              position: "absolute",
+              position: 'absolute',
               left: 4,
-              resizeMode: "contain",
+              resizeMode: 'contain'
             }}
-            source={{ uri: profileImage }}
-          ></Image>
-        ) : (
-          <View
-            style={{
-              paddingHorizontal: 10,
-              paddingVertical: 10,
-              borderRadius: 30,
-              marginLeft: 10,
-              position: "absolute",
-              backgroundColor: "white",
-              left: 15,
-              resizeMode: "contain",
-            }}
-          >
+            source={{ uri: profileImage }}></Image>
+          :
+          <View style={{
+
+            paddingHorizontal: 10,
+            paddingVertical: 10,
+            borderRadius: 30,
+            marginLeft: 10,
+            position: 'absolute',
+            backgroundColor: 'white',
+            left: 15,
+            resizeMode: 'contain'
+          }}>
             <Image
               style={{
                 height: 40,
                 width: 40,
-              }}
-              source={require("../../assets/images/userGrey.png")}
-            ></Image>
-          </View>
-        )}
-        <View
-          style={{ justifyContent: "center", marginLeft: 50, width: "50%" }}
-        >
-          {userData && (
-            <Text
-              style={{
-                color: "white",
-                margin: 0,
-                fontWeight: "600",
-                fontSize: 16,
-              }}
-            >
-              {userData.name}
-            </Text>
-          )}
-          {userData && (
-            <Text
-              style={{ color: "white", margin: 0, textTransform: "capitalize" }}
-            >
-              {userData.user_type} Account
-            </Text>
-          )}
 
+
+              }}
+              source={require('../../assets/images/userGrey.png')}></Image>
+          </View>
+
+
+        }
+        <View style={{ justifyContent: 'center', marginLeft: 50,width:'50%'}}>
+          {userData && <Text
+            style={{
+              color: 'white',
+              margin: 0,
+              fontWeight: '600',
+              fontSize: 16,
+              
+            }}>
+            {userData.name}
+          </Text>}
+          {userData && <Text style={{ color: 'white', margin: 0, textTransform: "capitalize" }}>{t(String(userData.user_type))} {t("Account")}</Text>}
+            {console.log("ajksdhjghasjghdggasgdgahsjhdg",String(userData.user_type))}
           {!Object.values(kycData).includes(false) ? <View style={{ flexDirection: 'row', marginTop: 4 }}>
             <View
               style={{
@@ -572,7 +552,7 @@ const CustomDrawer = () => {
                 marginTop: 2,
               }}>
               <Image style={{ height: 10, width: 10, resizeMode: 'contain' }} source={require('../../assets/images/tickBlue.png')}></Image>
-              <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC Status</Text>
+              <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC {t("Status")}</Text>
             </View>
 
           </View> :
@@ -589,372 +569,57 @@ const CustomDrawer = () => {
                   marginTop: 2,
                 }}>
                 <Image style={{ height: 10, width: 10, resizeMode: 'contain' }} source={require('../../assets/images/cancel.png')}></Image>
-                <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC Status</Text>
+                <Text style={{ marginLeft: 4, color: 'black', fontSize: 10, fontWeight: '500' }}>KYC {t("Status")}</Text>
               </View>
 
             </View>
           }
         </View>
-        <PoppinsTextMedium
-          content={`Version : ${currentVersion}`}
-          style={{
-            position: "absolute",
-            bottom: 4,
-            right: 10,
-            color: "white",
-            fontSize: 12,
-          }}
-        ></PoppinsTextMedium>
+        <PoppinsTextMedium content={`Version : ${currentVersion}`} style={{ position: 'absolute', bottom: 4, right: 10, color: 'white', fontSize: 12 }}></PoppinsTextMedium>
       </View>
-      <ScrollView
-        contentContainerStyle={{ width: "100%", height: "100%" }}
-        style={{ width: "100%", height: "100%" }}
-      >
-        {drawerData !== undefined &&
-          drawerData.app_menu.map((item, index) => {
+      
+      <ScrollView contentContainerStyle={{}} style={{ width: '100%', height: '100%' }} >
+
+        {
+          drawerData !== undefined && drawerData.app_menu.map((item, index) => {
             return (
-              <View>
-                <DrawerItems
-                  accessibilityLabel={String(index)}
-                  key={index}
-                  title={item.name}
-                  image={item.icon}
-                  size={20}
-                ></DrawerItems>
-              </View>
-            );
-          })}
+              <DrawerItems
+                key={index}
+                title={item.name}
+                image={item.icon}
+                size={20}></DrawerItems>
+            )
 
-    {
-      userData?.user_type == "distributor" &&
-      <DrawerItems
-          // key={index}
-          title={"Update Password"}
-          image={""}
-          size={20}
-          eye={true}
-        ></DrawerItems>
-
-    }
-  
-        {/* My Program Starting */}
-        {/* <View
-          style={{
-            minHeight: 54,
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 1,
-            paddingBottom: 10,
-            // zIndex:1,
-            borderBottomWidth: 1,
-            borderColor: '#DDDDDD',
-            backgroundColor: "white"
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              setMyProgramVisibile(!myProgramVisible)
-            }}
-            style={{
-              width: '20%',
-              alignItems: 'center',
-              // justifyContent: 'center',
-              height: '100%',
-              marginTop: 10
-            }}>
-
-           
-            {!myProgramVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain', transform: [{ rotate: '270deg' }], marginTop: 4 }} source={require('../../assets/images/arrowDown.png')}></Image>}
-            {myProgramVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain' }} source={require('../../assets/images/arrowDown.png')}></Image>}
-          </TouchableOpacity>
+          })
+        }
 
 
-          <View
-            style={{
-              width: '80%',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setMyProgramVisibile(!myProgramVisible)
-              }}>
-              <Text style={{ color: primaryThemeColor, fontSize: 15 }}>{t("My Program")}</Text>
-            </TouchableOpacity>
-
-            {myProgramVisible &&
-              <View style={{ marginTop: 5 }}>
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => { navigation.navigate("Tutorial") }}>
-                  <Text onPress={() => {
-                    navigation.navigate("Tutorial")
-                  }} style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Tutorial")}</Text>
-                </TouchableOpacity>
-
-                {getPolicyData  && <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => [
-                  navigation.navigate("PdfComponent", { pdf: getPolicyData })
-                ]}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>Policies</Text>
-                </TouchableOpacity>}
-
-                {getTermsData && <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => {
-                  navigation.navigate('PdfComponent', { pdf: getTermsData })
-                }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("T&C")}</Text>
-                </TouchableOpacity>}
-
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => {
-                  navigation.navigate('FAQ');
-                }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t('FAQ')}</Text>
-                </TouchableOpacity>
-
-              </View>
-
-            }
-
-          </View>
-        </View> */}
-        {/* My Program ending*/}
-
-        {/* Ozone Products Starting */}
-        {/* <View
-          style={{
-            minHeight: 54,
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 1,
-            paddingBottom: 10,
-            // zIndex:1,
-            borderBottomWidth: 1,
-            borderColor: '#DDDDDD',
-            backgroundColor: "white"
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              setOzoneProductVisible(!ozoneProductVisible)
-            }}
-            style={{
-              width: '20%',
-              alignItems: 'center',
-              // justifyContent: 'center',
-              height: '100%',
-              marginTop: 10
-            }}>
-
-            
-            {!ozoneProductVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain', transform: [{ rotate: '270deg' }], marginTop: 4 }} source={require('../../assets/images/arrowDown.png')}></Image>}
-            {ozoneProductVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain' }} source={require('../../assets/images/arrowDown.png')}></Image>}
-          </TouchableOpacity>
 
 
-          <View
-            style={{
-              width: '80%',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setOzoneProductVisible(!ozoneProductVisible)
-              }}>
-              <Text style={{ color: primaryThemeColor, fontSize: 15 }}>{t("Ozone Products")}</Text>
-            </TouchableOpacity>
-
-            {ozoneProductVisible &&
-              <View style={{ marginTop: 5 }}>
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => {
-                  navigation.navigate('ProductCatalogue')
-
-                }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Product Catalogue")}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => { Linking.openURL("https://www.ozone-india.com/") }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("jump to ozone website")}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => { navigation.navigate("ProductCategory") }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Category wise product information")}</Text>
-                </TouchableOpacity>
-              </View>
-
-            }
-
-          </View>
-        </View> */}
         {/* Ozone Products ending*/}
 
         {/* Community Starting */}
-        {/* <View
-          style={{
-            minHeight: 54,
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 1,
-            paddingBottom: 10,
-            // zIndex:1,
-            borderBottomWidth: 1,
-            borderColor: '#DDDDDD',
-            backgroundColor: "white"
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              setCommunityVisible(!communityVisible)
-            }}
-            style={{
-              width: '20%',
-              alignItems: 'center',
-              // justifyContent: 'center',
-              height: '100%',
-              marginTop: 10
-            }}>
-
-            
-            {!communityVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain', transform: [{ rotate: '270deg' }], marginTop: 4 }} source={require('../../assets/images/arrowDown.png')}></Image>}
-            {communityVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain' }} source={require('../../assets/images/arrowDown.png')}></Image>}
-          </TouchableOpacity>
-
-
-          <View
-            style={{
-              width: '80%',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setCommunityVisible(!communityVisible)
-              }}>
-              <Text style={{ color: primaryThemeColor, fontSize: 15 }}>{t("Community")}</Text>
-            </TouchableOpacity>
-
-            {communityVisible &&
-              <View style={{ marginTop: 5 }}>
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => {
-                  navigation.navigate("WhatsNew")
-                }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("What's New")}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => {
-                  console.log("images-1700639007902-188225481.pdf")
-                  navigation.navigate("PdfComponent", { pdf: "images-1700639007902-188225481.pdf" })
-
-                  //  getPolicyData && navigation.navigate("PdfComponent",{pdf: getPolicyData?.body?.data?.[0]?.files?.[0]})
-
-                }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Program Content")}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginTop: 5, marginBottom: 5 }} onPress={() => { navigation.navigate("TierDetails") }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Tier Details")}</Text>
-                </TouchableOpacity>
-              </View>
-            }
-
-          </View>
-        </View> */}
+    
         {/* Community ending*/}
 
         {/* Knowledge Hub */}
-        {/* <View
-          style={{
-            minHeight: 54,
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 1,
-            paddingBottom: 10,
-            // zIndex:1,
-            borderBottomWidth: 1,
-            borderColor: '#DDDDDD',
-            backgroundColor: 'white'
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              setKnowledgeHubVisible(!KnowledgeHubVisible)
-            }}
-            style={{
-              width: '20%',
-              alignItems: 'center',
-              // justifyContent: 'center',
-              height: '100%',
-              marginTop: 10
-            }}>
 
-           
-            {!KnowledgeHubVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain', transform: [{ rotate: '270deg' }], marginTop: 4 }} source={require('../../assets/images/arrowDown.png')}></Image>}
-            {KnowledgeHubVisible && <Image style={{ height: 20, width: 20, resizeMode: 'contain' }} source={require('../../assets/images/arrowDown.png')}></Image>}
-          </TouchableOpacity>
-
-
-          <View
-            style={{
-              width: '80%',
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                setKnowledgeHubVisible(!KnowledgeHubVisible)
-              }}>
-              <Text style={{ color: primaryThemeColor, fontSize: 15 }}>{t("Knowledge Hub")}</Text>
-            </TouchableOpacity>
-
-            {KnowledgeHubVisible &&
-              <View style={{ marginTop: 5 }}>
-                <TouchableOpacity onPress={() => {
-                  navigation.navigate("InstallationVideo")
-                }} style={{ marginTop: 5, marginBottom: 5 }}>
-                  <Text style={{ fontSize: 15, color: ternaryThemeColor }}>{t("Installation Video")}</Text>
-                </TouchableOpacity>
-                
-              </View>
-            }
-
-          </View>
-        </View> */}
         {/* Knowledge Hub*/}
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: ternaryThemeColor,
-            height: 70,
-            justifyContent: "center",
-            width: "100%",
-            alignItems: "center",
-            position: "absolute",
-            bottom: 62,
-          }}
-          onPress={() => {
-            handleLogout();
-          }}
-        >
-          <PoppinsTextLeftMedium
-            style={{ color: "white" }}
-            content={t("LOG OUT")}
-          ></PoppinsTextLeftMedium>
-          <PoppinsTextLeftMedium
-            style={{
-              color: "white",
-              fontSize: 10,
-              position: "absolute",
-              bottom: 2,
-            }}
-            content="Designed and developed by Genefied"
-          ></PoppinsTextLeftMedium>
+        <TouchableOpacity style={{ backgroundColor: ternaryThemeColor, height: 70, justifyContent: 'center', width: '100%', alignItems: 'center' }} onPress={() => {
+
+          handleLogout()
+
+
+        }}>
+          <PoppinsTextLeftMedium style={{ color: 'white' }} content={t("LOG OUT")}></PoppinsTextLeftMedium>
+        <PoppinsTextLeftMedium style={{color:'white',fontSize:10,position:'absolute',bottom:2}} content ="Designed and developed by Genefied"></PoppinsTextLeftMedium>
+
         </TouchableOpacity>
       </ScrollView>
+
+
+
     </View>
   );
 };

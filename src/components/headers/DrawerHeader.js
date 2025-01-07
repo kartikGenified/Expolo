@@ -81,7 +81,7 @@ const DrawerHeader = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        Check Drawer Menu for more options
+                        Check drawer menu for more options
                       </Text>
                       <View style={{ flexDirection: "row" }}>
                         {/* <TouchableOpacity

@@ -54,7 +54,7 @@ const PointHistory = ({ navigation }) => {
 
 
 
-    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loader.gif')).uri;
+    const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderExpolo.gif')).uri;
     const noData = Image.resolveAssetSource(require('../../../assets/gif/noData.gif')).uri;
     let startDate,endDate
     useEffect(() => {
@@ -249,25 +249,7 @@ const PointHistory = ({ navigation }) => {
                 </TouchableOpacity>    
                 }
 
-                {registrationRequired.includes(userData.user_type) && 
-                <TouchableOpacity onPress={()=>{
-                    getRegistrationPoints("annual_kitty_2024_25")
-                    setType("Annual Kitty")
-                }} style={{height:'100%',width:120,alignItems:"center",justifyContent:'center',backgroundColor:type==="Annual Kitty" ? "#DDDDDD":"white"}}>
-                    {/* <PoppinsTextMedium content="Registration Bonus" style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium> */}
-                    <PoppinsTextMedium content={t("Annual Kitty")} style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium>
 
-                </TouchableOpacity>    
-                }
-
-                <TouchableOpacity onPress={()=>{
-                    getRegistrationPoints("tds_deducted_2024_25")
-                    setType("TDS Deducted")
-                }} style={{height:'100%',width:120,alignItems:"center",justifyContent:'center',backgroundColor:type==="TDS Deducted" ? "#DDDDDD":"white",borderLeftWidth:1,borderColor:'#DDDDDD'}}>
-                    {/* <PoppinsTextMedium content="Registration Bonus" style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium> */}
-                    <PoppinsTextMedium content={t("TDS Deducted")} style={{color:'black',fontWeight:'700',fontSize:14}}></PoppinsTextMedium>
-
-                </TouchableOpacity>
                 
             </ScrollView>
         )
@@ -395,7 +377,7 @@ const PointHistory = ({ navigation }) => {
         return (
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", margin: 8, borderBottomWidth: 1, borderColor: '#DDDDDD', paddingBottom: 10,width:'100%',height:120,backgroundColor:'white' }}>
                 <View style={{ height: 60, width: '14%', alignItems: "center", justifyContent: "center", borderRadius: 10, borderWidth: 1, borderColor: '#DDDDDD',position:'absolute',left:10,}}>
-                    {image ? <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={{uri:image}}></Image>: <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={require('../../../assets/images/logoOzone.png')}></Image>}
+                    {image ? <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={{uri:image}}></Image>: <Image style={{ height: 40, width: 40, resizeMode: "contain" }} source={require('../../../assets/images/logoExpolo.png')}></Image>}
                 </View>
                 <View style={{ alignItems: "flex-start", justifyContent: "center",position:'absolute',left:80,width:'60%' }}>
                 {type!=="registration_bonus" && <PoppinsTextMedium style={{ fontWeight: '700', fontSize: 14, color: 'black' }} content={description}></PoppinsTextMedium>}

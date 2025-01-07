@@ -10,6 +10,7 @@ import {
   BackHandler,
   PanResponder,
   Animated,
+  Linking,
   Text,
 } from "react-native";
 import MenuItems from "../../components/atoms/MenuItems";
@@ -40,6 +41,7 @@ import {
 import PoppinsTextLeftMedium from "../../components/electrons/customFonts/PoppinsTextLeftMedium";
 import { setQrIdList } from "../../../redux/slices/qrCodeDataSlice";
 import CampaignVideoModal from "../../components/modals/CampaignVideoModal";
+import Link from "react-native-vector-icons/AntDesign";
 import { useGetActiveMembershipMutation } from "../../apiServices/membership/AppMembershipApi";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
 import PlatinumModal from "../../components/platinum/PlatinumModal";
@@ -55,9 +57,15 @@ import ModalWithBorder from "../../components/modals/ModalWithBorder";
 import ErrorModal from "../../components/modals/ErrorModal";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { needCaimpaign, needRandomRedeemPoint } from "../../utils/HandleClientSetup";
+import { appIcon, needCaimpaign, needRandomRedeemPoint } from "../../utils/HandleClientSetup";
 import { useGetAppCampaignMutation } from "../../apiServices/campaign/CampaignApi";
 import Tooltip from "react-native-walkthrough-tooltip";
+import Facebook from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Youtube from "react-native-vector-icons/AntDesign";
+import Instagram from "react-native-vector-icons/AntDesign";
+import Twitter from "react-native-vector-icons/AntDesign";
+import Linkedin from "react-native-vector-icons/AntDesign";
 import {
   setStepId,
   setAlreadyWalkedThrough,
@@ -65,6 +73,8 @@ import {
 
 import PointBox from "../../components/organisms/PointBox";
 import { useCurrentDateTime } from "../../hooks/customHooks/useDate";
+import RotateViewAnimation from "../../components/animations/RotateViewAnimation";
+import FadeInOutAnimations from "../../components/animations/FadeInOutAnimations";
 
 const Dashboard = ({ navigation }) => {
   const [dashboardItems, setDashboardItems] = useState();
@@ -76,6 +86,7 @@ const Dashboard = ({ navigation }) => {
   const [membership, setMembership] = useState();
   const [scanningDetails, seScanningDetails] = useState();
   const [notifModal, setNotifModal] = useState(false);
+  const [showLink, setShowLink] = useState(false);
   const [notifData, setNotifData] = useState(null);
   const [message, setMessage] = useState();
   const [success, setSuccess] = useState(false);
@@ -129,7 +140,7 @@ const Dashboard = ({ navigation }) => {
     : "#FFB533";
 
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loader2.gif")
+    require("../../../assets/gif/loaderExpolo.gif")
   ).uri;
   // console.log("pointSharingData", JSON.stringify(pointSharingData), userData)
   // console.log("user id is from dashboard", userId)
@@ -602,7 +613,7 @@ const Dashboard = ({ navigation }) => {
                 marginLeft: 10,
               }}
             >
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
@@ -622,7 +633,7 @@ const Dashboard = ({ navigation }) => {
                   style={{ color: "white", fontSize: 14 }}
                   content={membership}
                 ></PoppinsTextMedium>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           )}
           <PlatinumModal
@@ -834,6 +845,10 @@ const Dashboard = ({ navigation }) => {
           <DashboardDataBox header="Total Points"  data="5000" image={require('../../../assets/images/coin.png')} ></DashboardDataBox>
 
           </ScrollView> */}
+
+
+
+
           {dashboardData && !userPointIsLoading && (
             <DashboardMenuBox
               requiresLocation={requiresLocation}
@@ -841,6 +856,170 @@ const Dashboard = ({ navigation }) => {
               data={dashboardData}
             ></DashboardMenuBox>
           )}
+
+                {/* social links */}
+                <View
+            style={{
+              alignItems: "center",
+              justifyContent: "flex-end",
+              flexDirection: "row",
+              width: "90%",
+              marginBottom: 40,
+            }}
+          >
+            {showLink && (
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  width: "90%",
+                  height: 60,
+                  flexDirection: "row",
+                  marginBottom: 10,
+                }}
+              >
+                <RotateViewAnimation
+                  outputRange={["0deg", "60deg", "-60deg", "0deg"]}
+                  inputRange={[0, 1, 2, 3]}
+                  comp={() => {
+                    return (
+                      <FadeInOutAnimations
+                        comp={() => {
+                          return (
+                            <TouchableOpacity
+                              onPress={() => {
+                                Linking.openURL(
+                                  "https://www.facebook.com/people/Shri-Gautam/pfbid0g3k5K94cgdXUX38ejjXuNv3L5dq1tg4mWg5DxYork9WtPiz3ZqcyLHVqkU56sLNrl/?mibextid=LQQJ4d"
+                                );
+                              }}
+                            >
+                              <Facebook
+                                name="facebook-square"
+                                size={40}
+                                color="blue"
+                              ></Facebook>
+                            </TouchableOpacity>
+                          );
+                        }}
+                      ></FadeInOutAnimations>
+                    );
+                  }}
+                />
+                {/* <RotateViewAnimation outputRange={["0deg", "60deg", "-60deg", "0deg"]} inputRange={[0, 1, 2, 3]} comp={() => {
+                return (
+                  <FadeInOutAnimations comp={() => {
+                    return (
+                      <TouchableOpacity onPress={() => {
+                        Linking.openURL(`whatsapp://send?text=Hi Welcome To BTPL World&phone=${"+201023666065"}`)
+                      }
+                      }>
+                        <Icon name="whatsapp" size={40} color="green"></Icon>
+
+                      </TouchableOpacity>
+                    )
+                  }}></FadeInOutAnimations>
+                )
+              }} /> */}
+
+      
+
+                <RotateViewAnimation
+                  outputRange={["0deg", "60deg", "-60deg", "0deg"]}
+                  inputRange={[0, 1, 2, 3]}
+                  comp={() => {
+                    return (
+                      <FadeInOutAnimations
+                        comp={() => {
+                          return (
+                            <TouchableOpacity
+                              onPress={() => {
+                                Linking.openURL("https://x.com/expolo_1?mx=2");
+                              }}
+                            >
+                              <View
+                                style={{
+                                  height: 50,
+                                  width: 50,
+                                  backgroundColor: "#DDE8EE",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  borderRadius: 25,
+                                }}
+                              >
+                                {/* <Image
+                                  style={{ height: 50, width: 100 }}
+                                  resizeMode="contain"
+                                  source={require("../../../assets/images/ultima.png")}
+                                ></Image> */}
+                                     <Icon
+                                  name="twitter"
+                                  size={35}
+                                  color="blue"
+                                ></Icon>
+                              </View>
+                            </TouchableOpacity>
+                          );
+                        }}
+                      ></FadeInOutAnimations>
+                    );
+                  }}
+                />
+
+             
+
+                <RotateViewAnimation
+                  outputRange={["0deg", "60deg", "-60deg", "0deg"]}
+                  inputRange={[0, 1, 2, 3]}
+                  comp={() => {
+                    return (
+                      <FadeInOutAnimations
+                        comp={() => {
+                          return (
+                            <TouchableOpacity
+                              onPress={() => {
+                                Linking.openURL(
+                                  "https://www.instagram.com/expolo.in/?utm_source=qr"
+                                );
+                              }}
+                            >
+                              <Instagram
+                                name="instagram"
+                                size={40}
+                                color="red"
+                              ></Instagram>
+                            </TouchableOpacity>
+                          );
+                        }}
+                      ></FadeInOutAnimations>
+                    );
+                  }}
+                />
+
+              
+              </View>
+            )}
+            
+            <TouchableOpacity
+              style={{ width: "15%", marginBottom: 10 }}
+              onPress={() => {
+                setShowLink(!showLink);
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: ternaryThemeColor,
+                  width: 50,
+                  height: 50,
+                  borderRadius: 25,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Link name="sharealt" color={"white"} size={30}></Link>
+              </View>
+            </TouchableOpacity>
+          </View>
+
           {userPointIsLoading && (
             <FastImage
               style={{

@@ -210,7 +210,7 @@ const Profile = ({ navigation }) => {
     getActiveMembershipData && getActiveMembershipData.body?.tier.name;
   const accountVerified = !Object.values(kycData).includes(false);
   const gifUri = Image.resolveAssetSource(
-    require("../../../assets/gif/loader.gif")
+    require("../../../assets/gif/loaderExpolo.gif")
   ).uri;
 
   const ProfileBox = (props) => {
@@ -786,11 +786,11 @@ const Profile = ({ navigation }) => {
                     title="Payment Methods"
                     image={require("../../../assets/images/money.png")}
                   ></ProfileBox>
-                  <ProfileBox
+                  {/* <ProfileBox
                     buttonTitle={"Change"}
                     title={"Change Language"}
                     image={require("../../../assets/images/language.png")}
-                  ></ProfileBox>
+                  ></ProfileBox> */}
                   <ProfileBox
                     buttonTitle={"View"}
                     title="Check Passbook"

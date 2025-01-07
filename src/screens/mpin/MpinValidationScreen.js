@@ -575,7 +575,7 @@ const MpinValidationScreen = (params) => {
 
       <View
         style={{
-          backgroundColor: ternaryThemeColor,
+          backgroundColor: 'white',
           padding: 10,
           marginTop: "35%",
           marginBottom: 100,
@@ -583,8 +583,8 @@ const MpinValidationScreen = (params) => {
       >
         <Image
           style={{
-            height: 50,
-            width: 100,
+            height: 150,
+            width: 150,
             resizeMode: "contain",
           }}
           source={appIcon}

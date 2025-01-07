@@ -135,7 +135,7 @@ const QrCodeScanner = ({ navigation, route }) => {
     ? useSelector((state) => state.apptheme.ternaryThemeColor)
     : "grey";
   const gifUriLoading = Image.resolveAssetSource(
-    require("../../../assets/gif/loader2.gif")
+    require("../../../assets/gif/loaderExpolo.gif")
   ).uri;
 
   const gifUriCheck = Image.resolveAssetSource(
@@ -577,7 +577,7 @@ const QrCodeScanner = ({ navigation, route }) => {
     onCodeScanned: debounce((codes) => {
       console.log(`Scanned ${codes.length} codes!`, codes[0]?.value);
       scanDelay(codes[0]?.value, () => {
-        Vibration.vibrate([1000, 1000, 1000]);
+     
         onSuccess(codes[0]?.value);
       });
     }, 100), // Debounce time: adjust as needed
@@ -622,6 +622,7 @@ const QrCodeScanner = ({ navigation, route }) => {
                     ? response?.data.body
                     : response?.data.body.qr;
                 if (qrStatus === "1") {
+                  Vibration.vibrate([1000, 1000, 1000]);
                   await addQrDataToList(verifiedQrData);
                 }
 

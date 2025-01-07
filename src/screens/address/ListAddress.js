@@ -287,6 +287,7 @@ const ListAddress = ({ navigation ,route}) => {
       state,
       country,
       pincode,
+      address,
       id: props.data.id
     };
   

@@ -87,7 +87,7 @@ const PreviousTransactionHistory = ({navigation}) => {
               
                 <Image
                   style={{ height: 60, width: 60, resizeMode: "contain" }}
-                  source={require('../../../assets/images/logoOzone.png')}
+                  source={require('../../../assets/images/logoExpolo.png')}
                 ></Image>
             </View>
             <View
