@@ -4,18 +4,18 @@
 export const clientName = "gautam-garments";
 export const clientID = 30;
 
-export const baseUrl = "http://saas-api-dev.genefied.in/"  // "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/""
+export const baseUrl = 'https://saas.genefied.in/'  // "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/""
 
 //icons and images
 export const appIcon = require("../../assets/images/logoExpolo.png");
 export const splash = require("../../assets/gif/SplashExpolo.gif");
 
 export const descriptionImages = [
-  require("../../assets/images/rewardifyStep.png"),
+  require("../../assets/images/retailerLoyalty.png"),
   // require("../../assets/images/Step2.png"),
   // require("../../assets/images/Step3.png"),
   // require("../../assets/images/Step4.png"),
-  require("../../assets/images/Step5.png")
+  require("../../assets/images/surprisingGift.png")
 ];
 
 //Change Loader Manually By Simply Replacing images

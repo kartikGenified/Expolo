@@ -674,6 +674,12 @@ const QrCodeScanner = ({ navigation, route }) => {
       }
 
       console.log("onSuccess qrData", qrData);
+      if(qrData == undefined)
+        {
+          qrData = e?.split('-')[1]
+          qrData = `Gautam Garments-${qrData}`;
+          requestData["unique_code"] = qrData;
+        }
       // Check for duplicate QR code
 
       if (isDuplicateQr.has(qrData)) {

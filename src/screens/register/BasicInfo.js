@@ -483,7 +483,7 @@ const BasicInfo = ({ navigation, route }) => {
   const handleChildComponentData = data => {
    
     // setOtpVisible(true)
-    if (data?.name === "name") {
+    if (data?.name.toLowerCase() === "name") {
       setUserName(data?.value)
     }
     // console.log("isValidEmail", isValidEmail(data.value))

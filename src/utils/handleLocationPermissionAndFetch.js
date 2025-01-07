@@ -58,10 +58,10 @@ const handleLocationPermissionAndFetch = async (
 
         return locationJson;
       } else {
-        showAlert(
-         "Geocoding Error",
-           "Failed to fetch address."
-        );
+        // showAlert(
+        //  "Geocoding Error",
+        //    "Failed to fetch address."
+        // );
         return null;
       }
     } catch (error) {
@@ -116,11 +116,11 @@ const handleLocationPermissionAndFetch = async (
             getLocationPermission(); // Retry permission
           } else {
             // Other errors
-            Alert.alert(
-              "Error",
-              "An unexpected error occurred while fetching your location.",
-              [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-            );
+            // Alert.alert(
+            //   "Error",
+            //   "An unexpected error occurred while fetching your location.",
+            //   [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+            // );
           }
           reject(error); // Reject the Promise with the error
         },
