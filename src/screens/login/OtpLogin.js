@@ -297,7 +297,7 @@ const OtpLogin = ({ navigation, route }) => {
             flexDirection: "row",
           }}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{
               height: 40,
               alignItems: "center",
@@ -314,7 +314,7 @@ const OtpLogin = ({ navigation, route }) => {
               style={{ height: 20, width: 20, resizeMode: "contain" }}
               source={require("../../../assets/images/blackBack.png")}
             ></Image>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <Image
             style={{
