@@ -2,6 +2,7 @@ import { Alert, Linking, Platform } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 import { GoogleMapsKey } from "@env";
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 const handleLocationPermissionAndFetch = async (
  
@@ -25,6 +26,15 @@ const handleLocationPermissionAndFetch = async (
       ],
       { cancelable: false }
     );
+  };
+
+  const checkIOSPermission = async () => {
+    const status = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+    if (status === RESULTS.DENIED) {
+      const requestStatus = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+      return requestStatus === RESULTS.GRANTED;
+    }
+    return status === RESULTS.GRANTED;
   };
 
   const fetchLocation = async (latitude, longitude) => {
@@ -135,11 +145,7 @@ const handleLocationPermissionAndFetch = async (
 
   const checkAndFetchLocation = async () => {
     if (Platform.OS === "ios") {
-      showAlert(
-        "GPS Disabled",
-        
-          "Please enable GPS/Location to use this feature."
-      );
+      checkIOSPermission()
       return null;
     } else if (Platform.OS === "android") {
       try {
