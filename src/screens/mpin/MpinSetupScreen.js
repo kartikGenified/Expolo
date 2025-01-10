@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   Image,
+  Keyboard
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
@@ -179,7 +180,7 @@ const MpinSetupScreen = (params) => {
         ></Image>
       </TouchableOpacity> */}
 
-      <View
+      <TouchableOpacity onPress={()=>{Keyboard.dismiss()}}
         style={{
           backgroundColor: 'white',
           padding: 10,
@@ -195,7 +196,7 @@ const MpinSetupScreen = (params) => {
           }}
           source={appIcon}
         />
-      </View>
+      </TouchableOpacity>
 
       <Text style={{ ...styles.title, color: ternaryThemeColor }}>
         Create Your MPIN

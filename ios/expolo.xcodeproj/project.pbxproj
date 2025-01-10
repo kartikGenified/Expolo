@@ -16,7 +16,6 @@
 		40BDB3C1D0D44A55A379A967 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 326D221C36044A949EBE9EFB /* Poppins-SemiBoldItalic.ttf */; };
 		4EFCF9E930664BFA94C8D88A /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2621FF15BCC64D26969A75F2 /* Poppins-Light.ttf */; };
 		52BE06121C0C407690BF4A90 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B8BF0838049D291ECD299 /* Poppins-Regular.ttf */; };
-		536921062D2E661D00C68452 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 536921052D2E661D00C68452 /* GoogleService-Info.plist */; };
 		6236900152AB4189B2E322BD /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7146FCA9701416BBB4981A0 /* Poppins-ThinItalic.ttf */; };
 		6EE2AB2C70474C17B24BDBD3 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF597A940C684E27BC749E32 /* Poppins-ExtraBoldItalic.ttf */; };
 		7F92F55755B3473DB222E5E7 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 884A6DE7592C4EE0B1A9E605 /* Poppins-Thin.ttf */; };
@@ -53,6 +52,7 @@
 		E9B14AC32A8CDED1004DE909 /* FontAwesome6_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B14AB02A8CDED1004DE909 /* FontAwesome6_Brands.ttf */; };
 		E9B14AC42A8CDED1004DE909 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B14AB12A8CDED1004DE909 /* MaterialIcons.ttf */; };
 		E9B14AC72A8E3BD3004DE909 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B14AC62A8E3BD3004DE909 /* File.swift */; };
+		E9D0C1D02D2FD215002416D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D0C1CF2D2FD215002416D5 /* GoogleService-Info.plist */; };
 		F21D0A43777744B6B8C56F9B /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECDB724FABA4B5C8ABD00FD /* Poppins-ExtraLightItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +85,6 @@
 		4C93A058ABAA46E7A057FA77 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		4ECDB724FABA4B5C8ABD00FD /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		5109BE1CC45D4D228F5905C8 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
-		536921052D2E661D00C68452 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6ADA9E2354B743C393570BC0 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		79D654BA924B1589326AA749 /* Pods-expolo-expoloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-expolo-expoloTests.debug.xcconfig"; path = "Target Support Files/Pods-expolo-expoloTests/Pods-expolo-expoloTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7CD9F36D1CDD42B4A722D9A1 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		E9B14AB12A8CDED1004DE909 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		E9B14AC52A8E3BD2004DE909 /* expolo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "expolo-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9B14AC62A8E3BD3004DE909 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		E9D0C1CF2D2FD215002416D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F97B41FC45544F1C852F0A14 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		FEAC1C540BDA408D917124E6 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		13B07FAE1A68108700A75B9A /* expolo */ = {
 			isa = PBXGroup;
 			children = (
-				536921052D2E661D00C68452 /* GoogleService-Info.plist */,
+				E9D0C1CF2D2FD215002416D5 /* GoogleService-Info.plist */,
 				E97F37B52B3AE9B500D662DB /* expolo.entitlements */,
 				E9B14A9E2A8CDED1004DE909 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -311,6 +311,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				A6F9CB31B8D5F4F1D2BFDFDD /* [CP] Copy Pods Resources */,
+				C5122BAA2724C466F108BA6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,6 +336,7 @@
 				ED3865848094D4E18ACC3214 /* [CP] Copy Pods Resources */,
 				19048D34051629539C566489 /* [CP-User] [RNFB] Core Configuration */,
 				C92962A1440377EB4C8E017A /* [CP-User] [RNFB] Crashlytics Configuration */,
+				B2E39091594466BB958F35DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -418,6 +420,7 @@
 				E9B14AB52A8CDED1004DE909 /* FontAwesome6_Regular.ttf in Resources */,
 				E9B14AC22A8CDED1004DE909 /* SimpleLineIcons.ttf in Resources */,
 				F21D0A43777744B6B8C56F9B /* Poppins-ExtraLightItalic.ttf in Resources */,
+				E9D0C1D02D2FD215002416D5 /* GoogleService-Info.plist in Resources */,
 				975670F7D8CD47F0B4038FD0 /* Poppins-Italic.ttf in Resources */,
 				4EFCF9E930664BFA94C8D88A /* Poppins-Light.ttf in Resources */,
 				E9B14AC32A8CDED1004DE909 /* FontAwesome6_Brands.ttf in Resources */,
@@ -436,7 +439,6 @@
 				E9B14AB82A8CDED1004DE909 /* MaterialCommunityIcons.ttf in Resources */,
 				E9B14ABF2A8CDED1004DE909 /* Zocial.ttf in Resources */,
 				E9B14AC12A8CDED1004DE909 /* FontAwesome6_Solid.ttf in Resources */,
-				536921062D2E661D00C68452 /* GoogleService-Info.plist in Resources */,
 				6236900152AB4189B2E322BD /* Poppins-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,7 +448,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -456,7 +458,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
@@ -510,6 +512,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-expolo-expoloTests/Pods-expolo-expoloTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2E39091594466BB958F35DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-expolo/Pods-expolo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-expolo/Pods-expolo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-expolo/Pods-expolo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5122BAA2724C466F108BA6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-expolo-expoloTests/Pods-expolo-expoloTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-expolo-expoloTests/Pods-expolo-expoloTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-expolo-expoloTests/Pods-expolo-expoloTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C92962A1440377EB4C8E017A /* [CP-User] [RNFB] Crashlytics Configuration */ = {
@@ -699,7 +735,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.expolo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.expolo.sgg;
 				PRODUCT_NAME = expolo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "expolo-Bridging-Header.h";
@@ -737,7 +773,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.expolo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genefied.expolo.sgg;
 				PRODUCT_NAME = expolo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "expolo-Bridging-Header.h";
@@ -781,7 +817,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -863,7 +899,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -30,8 +30,6 @@ function BottomNavigator({ navigation }) {
 
   const dispatch = useDispatch();
   const stepId = useSelector((state) => state.walkThrough.stepId);
-  
-
 
   const { t } = useTranslation();
 
@@ -47,16 +45,21 @@ function BottomNavigator({ navigation }) {
   const platformFontWeight = Platform.OS === "ios" ? "400" : "800";
   console.log("workflow", workflow, userData);
 
-  let isAlreadyWalkedThrough ;
+  let isAlreadyWalkedThrough;
 
-
-   useEffect(() => {
+  useEffect(() => {
     const getData = async () => {
-      isAlreadyWalkedThrough = await AsyncStorage.getItem("isAlreadyWalkedThrough");
-      console.log("isAlreadyWalkedThrough",isAlreadyWalkedThrough)
-      if( workflow.includes("Points On Product")){
+      isAlreadyWalkedThrough = await AsyncStorage.getItem(
+        "isAlreadyWalkedThrough"
+      );
+      console.log("isAlreadyWalkedThrough", isAlreadyWalkedThrough);
+      if (workflow.includes("Points On Product")) {
         console.log("isAlreadyWalkThrough", isAlreadyWalkedThrough, stepId);
-        if ( !(isAlreadyWalkedThrough =="true") && stepId === 0 && needWalkedThrough) {
+        if (
+          !(isAlreadyWalkedThrough == "true") &&
+          stepId === 0 &&
+          needWalkedThrough
+        ) {
           setWalkThrough(false);
         } else if (stepId == 2) {
           setStep3(true);
@@ -64,25 +67,21 @@ function BottomNavigator({ navigation }) {
           setWalkThrough(false);
         }
       }
-  }
-  getData()
-
-
-
-   
+    };
+    getData();
   }, [stepId]);
 
   const handleNextStep = () => {
     setWalkThrough(false);
-    setStep3(false)
-    console.log("stepIdddd", stepId)
+    setStep3(false);
+    console.log("stepIdddd", stepId);
     //step 1
     dispatch(setStepId(stepId + 1)); // Move to the next step
   };
 
   const handlePrevStep = () => {
     setWalkThrough(false);
-    setStep3(false)
+    setStep3(false);
     dispatch(setStepId(stepId - 1)); // Move to the next step
   };
 
@@ -90,7 +89,7 @@ function BottomNavigator({ navigation }) {
     dispatch(setStepId(0)); // Reset or handle skip logic
     dispatch(setAlreadyWalkedThrough(true)); // Mark walkthrough as completed
     setWalkThrough(false);
-    setStep3(false)
+    setStep3(false);
   };
 
   useEffect(() => {
@@ -123,7 +122,7 @@ function BottomNavigator({ navigation }) {
               width: "100%",
             }}
           >
-            {  console.log("workflow", workflow, )}
+            {console.log("workflow", workflow)}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("GiftCatalogue");
@@ -216,8 +215,14 @@ function BottomNavigator({ navigation }) {
                   placement="right"
                   animated={true}
                   onClose={() => setWalkThrough(false)}
-                  tooltipStyle={{ borderRadius: 30, }}
-                  contentStyle={{ backgroundColor: "white", minHeight: 100, borderWidth:2, borderRadius:10, borderColor:ternaryThemeColor }}
+                  tooltipStyle={{ borderRadius: 30 }}
+                  contentStyle={{
+                    backgroundColor: "white",
+                    minHeight: 100,
+                    borderWidth: 2,
+                    borderRadius: 10,
+                    borderColor: ternaryThemeColor,
+                  }}
                 >
                   <PoppinsTextMedium
                     style={{
@@ -228,7 +233,6 @@ function BottomNavigator({ navigation }) {
                     }}
                     content="Scan QR"
                   />
-                  
                 </Tooltip>
               </TouchableOpacity>
             ) : (
@@ -253,7 +257,15 @@ function BottomNavigator({ navigation }) {
                       );
                     }}
                   />
-                   <PoppinsTextMedium style={{marginTop:4,fontSize:12,fontWeight:platformFontWeight,color:'black'}} content={t("Check Genuinity")}></PoppinsTextMedium>
+                  <PoppinsTextMedium
+                    style={{
+                      marginTop: 4,
+                      fontSize: 12,
+                      fontWeight: platformFontWeight,
+                      color: "black",
+                    }}
+                    content={t("Check Genuinity")}
+                  ></PoppinsTextMedium>
                 </TouchableOpacity>
               )
             )}
@@ -269,7 +281,7 @@ function BottomNavigator({ navigation }) {
                   right: 30,
                 }}
               >
-                  <Book name="book" size={24} color={ternaryThemeColor}></Book>
+                <Book name="book" size={24} color={ternaryThemeColor}></Book>
 
                 <Tooltip
                   isVisible={step3}
@@ -283,7 +295,7 @@ function BottomNavigator({ navigation }) {
                           fontWeight: "bold",
                         }}
                       >
-                       Click on passbook to check points
+                        Click on passbook to check points
                       </Text>
                       <View style={{ flexDirection: "row" }}>
                         <TouchableOpacity
@@ -317,9 +329,14 @@ function BottomNavigator({ navigation }) {
                   animated={true}
                   onClose={() => setStep3(false)}
                   tooltipStyle={{ borderRadius: 30 }}
-                  contentStyle={{ backgroundColor: "white", minHeight: 100, borderWidth:2, borderRadius:10, borderColor:ternaryThemeColor }}
+                  contentStyle={{
+                    backgroundColor: "white",
+                    minHeight: 100,
+                    borderWidth: 2,
+                    borderRadius: 10,
+                    borderColor: ternaryThemeColor,
+                  }}
                 >
-
                   <PoppinsTextMedium
                     style={{
                       marginTop: 4,
@@ -350,7 +367,15 @@ function BottomNavigator({ navigation }) {
                   size={24}
                   color={ternaryThemeColor}
                 ></BookOpen>
- <PoppinsTextMedium style={{marginTop:4,fontSize:12,fontWeight:platformFontWeight,color:'black'}} content={t("Product Catalogue")}></PoppinsTextMedium>
+                <PoppinsTextMedium
+                  style={{
+                    marginTop: 4,
+                    fontSize: 12,
+                    fontWeight: platformFontWeight,
+                    color: "black",
+                  }}
+                  content={t("Product Catalogue")}
+                ></PoppinsTextMedium>
               </TouchableOpacity>
             )}
           </View>
