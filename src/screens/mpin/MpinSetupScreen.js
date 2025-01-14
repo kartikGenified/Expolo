@@ -146,10 +146,12 @@ const MpinSetupScreen = (params) => {
 
       await AsyncStorage.setItem("userMpin", fullMpin);
       if(userData.user_type == "distributor"){
-        navigation.reset({ index: "0", routes: [{ name: "UpdatePassword",params: { 
-          /* Your parameters here */
-          type: "login"
-        } }] });
+
+        // navigation.reset({ index: "0", routes: [{ name: "UpdatePassword",params: { 
+        //   /* Your parameters here */
+        //   type: "login"
+        // } }] });
+        navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
       }
       else{
       navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
