@@ -104,9 +104,13 @@ const MpinSetupScreen = (params) => {
     newMpin[index] = text; // Update the current input
     setMpin(newMpin);
 
+
     // Move to the next input if a number is entered
     if (text.length === 1 && index < 3) {
       refInputs.current[index + 1].focus();
+    }
+    else{
+      Keyboard.dismiss()
     }
   };
 
@@ -159,7 +163,7 @@ const MpinSetupScreen = (params) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -184,7 +188,7 @@ const MpinSetupScreen = (params) => {
         style={{
           backgroundColor: 'white',
           padding: 10,
-          marginTop: "35%",
+          marginTop: "20%",
           marginBottom: 100,
         }}
       >
@@ -230,7 +234,7 @@ const MpinSetupScreen = (params) => {
       >
         <Text style={styles.buttonText}>Set MPIN</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
