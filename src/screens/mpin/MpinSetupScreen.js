@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  Keyboard
+  Keyboard,
+  ScrollView
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
