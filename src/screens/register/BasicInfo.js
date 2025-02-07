@@ -422,34 +422,41 @@ const BasicInfo = ({ navigation, route }) => {
   }, [sendOtpData, sendOtpError])
 
   const handleTimer = () => {
-    if(userMobile)
-    {
-      if(userMobile.length==10)
-      {
-        if(timer===60)
+    if(userName){
+      if(userMobile)
         {
-          getOTPfunc()
-          setOtpVisible(true)
-        }
-        if (timer===0 || timer===-1) {
-          setTimer(60);
-          getOTPfunc()
-          setOtpVisible(true)
-    
+          if(userMobile.length==10)
+          {
+            if(timer===60)
+            {
+              getOTPfunc()
+              setOtpVisible(true)
+            }
+            if (timer===0 || timer===-1) {
+              setTimer(60);
+              getOTPfunc()
+              setOtpVisible(true)
+        
+             
+            }
+          }
+          else{
+            setError(true)
+            setMessage(t("Mobile number length must be 10"))
+          }
          
         }
-      }
-      else{
-        setError(true)
-        setMessage(t("Mobile number length must be 10"))
-      }
-     
+        else{
+          setError(true)
+            setMessage(t("Kindly enter mobile number"))
+        }
+        
     }
     else{
       setError(true)
-        setMessage(t("Kindly enter mobile number"))
+      setMessage(t("Please enter name"))
     }
-    
+ 
   }
 
 
@@ -519,12 +526,15 @@ const BasicInfo = ({ navigation, route }) => {
     }
     if((data?.name).toLowerCase()=== "gstin")
     {
-      if(data?.value?.length>0)
+      console.log("the erorrr", data?.error, data.value)
+      if(data?.value?.length>0 && !(data?.error))
       {
         setGstEntered(true)
+        setGstVerified(true)
       }
-      else if(data?.value?.length == 0)
+      else if(data?.value?.length == 0 || (data?.error) )
       {
+        setGstVerified(false)
         setGstEntered(false)
       }
     }
@@ -840,7 +850,7 @@ console.log("responseMap",responseMap)
                             console.log("gstin fields required, verified",gstinRequired,gstVerified )
 
 
-                          registerUserFunc(body);
+                          // registerUserFunc(body);
                           }
                           
   
@@ -896,7 +906,7 @@ console.log("responseMap",responseMap)
                             console.log("aadhar fields required, verified",aadhaarRequired,aadhaarVerified )
                             console.log("pan fields required, verified",panRequired,pansVerified )
                             console.log("gstin fields required, verified",gstinRequired,gstVerified )
-                            registerUserFunc(body);
+                            // registerUserFunc(body);
                           }
                           
   
@@ -1071,7 +1081,7 @@ console.log("responseMap",responseMap)
 
 
                       {console.log("conditions", otpVerified, otpVisible)}
-                      {!otpVerified && otpVisible &&
+                      {!otpVerified && otpVisible && userName &&
                         <>
 
                           <PoppinsTextLeftMedium style={{ marginRight: '70%' }} content="OTP"></PoppinsTextLeftMedium>

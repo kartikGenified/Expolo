@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useGetAllMediaMutation, useGetMediaByIdQuery } from '../../apiServices/mediaApi/GetMediaApi';
@@ -10,8 +10,10 @@ import PoppinsTextMedium from '../../components/electrons/customFonts/PoppinsTex
 import PoppinsTextLeftMedium from '../../components/electrons/customFonts/PoppinsTextLeftMedium';
 import Plus from 'react-native-vector-icons/AntDesign';
 import PoppinsText from '../../components/electrons/customFonts/PoppinsText';
+import { useIsFocused } from '@react-navigation/native';
 // create a component
 const QueryList = ({ navigation }) => {
+    const[data, setData] = useState()
     const ternaryThemeColor = useSelector(
         state => state.apptheme.ternaryThemeColor,
     )
@@ -20,6 +22,7 @@ const QueryList = ({ navigation }) => {
 
     const userData = useSelector(state => state.appusersdata.userData)
     console.log("Userdata", userData)
+    const focused = useIsFocused()
 
     const [getQueryfunc, {
         data: getQueryData,
@@ -41,11 +44,12 @@ const QueryList = ({ navigation }) => {
 
     useEffect(() => {
         fetchQueries();
-    }, [])
+    }, [focused])
 
     useEffect(() => {
         if (getQueryData) {
             console.log("getQueryData", JSON.stringify(getQueryData))
+            setData(getQueryData)
         }
         else {
             console.log("getQueryError", getQueryError)
@@ -159,9 +163,9 @@ const QueryList = ({ navigation }) => {
             {/* navigator */}
 
             <View>
-                {getQueryData?.body?.supportQueriesList &&
+                {data?.body?.supportQueriesList &&
                     <FlatList
-                        data={getQueryData?.body?.supportQueriesList}
+                        data={data?.body?.supportQueriesList}
                         maxToRenderPerBatch={10}
                         initialNumToRender={10}
                         renderItem={({ item }) => (

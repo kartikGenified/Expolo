@@ -23,6 +23,7 @@ import MessageModal from '../../components/modals/MessageModal';
 import { useGetQueriesTypeMutation, useSubmitQueriesMutation } from '../../apiServices/supportQueries/supportQueriesApi';
 import PrefilledTextInput from '../../components/atoms/input/PrefilledTextInput';
 import FeedbackTextArea from '../../components/feedback/FeedbackTextArea';
+import { useTranslation } from 'react-i18next';
 
 const SupportQueries = ({ navigation }) => {
   const [error, setError] = useState(false)
@@ -45,6 +46,8 @@ const SupportQueries = ({ navigation }) => {
     : '#FFB533';
 
   const userData = useSelector(state => state.appusersdata.userData);
+
+  const {t} = useTranslation()
 
 
   const [getQueriesTypeFunc, {
