@@ -781,11 +781,11 @@ const Profile = ({ navigation }) => {
                     paddingRight:20
                   }}
                 >
-                  <ProfileBox
+                  {/* <ProfileBox
                     buttonTitle={"Add"}
                     title="Payment Methods"
                     image={require("../../../assets/images/money.png")}
-                  ></ProfileBox>
+                  ></ProfileBox> */}
                   {/* <ProfileBox
                     buttonTitle={"Change"}
                     title={"Change Language"}

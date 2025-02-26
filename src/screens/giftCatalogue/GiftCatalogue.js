@@ -101,14 +101,19 @@ export default function GiftCatalogue({ navigation }) {
     return (
       <View
         style={{
-          width: "44%",
+          width: "45%",
           borderWidth: 0.2,
           borderColor: "#DDDDDD",
           elevation: 6,
+<<<<<<< HEAD
           height: 300,
+=======
+          height: 280,
+>>>>>>> 8d5f620eade1252d0e716ebd3444d9ebe17c23be
           backgroundColor: "white",
           borderRadius: 4,
           margin: 10,
+          paddingBottom:10,
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -116,7 +121,12 @@ export default function GiftCatalogue({ navigation }) {
         <View
           style={{
             width: "100%",
+<<<<<<< HEAD
             height: "50%",
+=======
+            height: 150,
+            padding:5,
+>>>>>>> 8d5f620eade1252d0e716ebd3444d9ebe17c23be
             borderBottomWidth: 1,
             borderColor: "#DDDDDD",
           }}

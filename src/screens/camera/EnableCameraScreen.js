@@ -83,7 +83,7 @@ const EnableCameraScreen = ({ navigation, route }) => {
           if (!alertShown) {
             Alert.alert(
               "Alert",
-              `${cameraPermissionMessage}`,
+              `${cameraPermissionMessage? cameraPermissionMessage : "Please Enable Camera Permission"}`,
               [{ text: "OK", onPress: () => Linking.openSettings() }],
               { cancelable: false }
             );

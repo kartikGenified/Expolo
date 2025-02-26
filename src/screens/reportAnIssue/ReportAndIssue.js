@@ -25,6 +25,7 @@ import ModalWithBorder from "../../components/modals/ModalWithBorder";
 import Icon from "react-native-vector-icons/Feather";
 import ErrorModal from "../../components/modals/ErrorModal";
 import Close from "react-native-vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 
 const ReportAndIssue = ({ navigation, route }) => {
   const [description, setDescription] = useState("");
@@ -50,6 +51,8 @@ const ReportAndIssue = ({ navigation, route }) => {
   const productName = data?.product_code;
   const visibleCode = data?.batch_running_code;
   const qrId = route.params?.qrId;
+
+  const {t} = useTranslation()
 
   const [
     addIssueFunc,

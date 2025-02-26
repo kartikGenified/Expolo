@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   Image,
+  Keyboard
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -495,6 +496,9 @@ const MpinValidationScreen = (params) => {
     // Move to the next input if a number is entered
     if (text.length === 1 && index < 3) {
       refInputs.current[index + 1].focus();
+    }
+    else{
+      Keyboard.dismiss()
     }
   };
 

@@ -198,7 +198,6 @@
 		13B07FAE1A68108700A75B9A /* expolo */ = {
 			isa = PBXGroup;
 			children = (
-				E9D0C1CF2D2FD215002416D5 /* GoogleService-Info.plist */,
 				E97F37B52B3AE9B500D662DB /* expolo.entitlements */,
 				E9B14A9E2A8CDED1004DE909 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -225,6 +224,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5326EA402D37B99D003CB079 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E9D0C1CF2D2FD215002416D5 /* GoogleService-Info.plist */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +253,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				0597B42BD34A4055A49CF6C5 /* Resources */,
+				5326EA402D37B99D003CB079 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -722,14 +730,14 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = expolo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = expolo;
+				INFOPLIST_KEY_CFBundleDisplayName = "Expolo Rewards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -760,14 +768,14 @@
 				DEVELOPMENT_TEAM = 9D932R2PWR;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = expolo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = expolo;
+				INFOPLIST_KEY_CFBundleDisplayName = "Expolo Rewards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

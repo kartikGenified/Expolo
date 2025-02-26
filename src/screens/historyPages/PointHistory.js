@@ -293,7 +293,7 @@ const PointHistory = ({ navigation }) => {
                 props.handleFilter(enddate?.value, "end")
             }
             return (
-                <View style={{ height: 320, backgroundColor: 'white', width: '100%', borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
+                <View style={{ height: 340, backgroundColor: 'white', width: '100%', borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
 
                     {/* {openBottomModal && <FilterModal
                         modalClose={modalClose}
@@ -302,7 +302,7 @@ const PointHistory = ({ navigation }) => {
                         handleFilter={onFilter}
                         comp={ModalContent}></FilterModal>} */}
 
-<PoppinsTextMedium style={{ marginLeft: 20, fontSize: 16, position: "absolute", left: 10,color:'black' }} content={t("Date Filter")}></PoppinsTextMedium>
+<PoppinsTextMedium style={{ marginLeft: 20, fontSize: 16, color:'black', paddingTop:10 }} content={t("Date Filter")}></PoppinsTextMedium>
                     <TouchableOpacity onPress={()=>{setOpenBottomModal(false)}} style={{height:40,width:40,alignItems:'center',justifyContent:'center',position:'absolute',top:10,right:10}}>
                     <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../assets/images/cancel.png')}></Image>
                     </TouchableOpacity>
