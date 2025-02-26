@@ -40,7 +40,7 @@ import FastImage from "react-native-fast-image";
 import { useGetMappingDetailsByAppUserIdMutation } from "../../apiServices/userMapping/userMappingApi";
 import { setFirstScan } from "../../../redux/slices/scanningSlice";
 import MessageModal from "../../components/modals/MessageModal";
-
+import { useTranslation } from "react-i18next";
 
 const CongratulateOnScan = ({ navigation, route }) => {
   const [showBulkScanPoints, setShowBulkScanPoints] = useState();
@@ -57,6 +57,7 @@ const CongratulateOnScan = ({ navigation, route }) => {
 
   //  data from scanning qr code
   const dispatch = useDispatch();
+  const {t} = useTranslation()
   // product data recieved from scanned product
   const productData = useSelector((state) => state.productData.productData);
   const pointSharingData = useSelector(

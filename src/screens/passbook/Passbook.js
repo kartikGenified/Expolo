@@ -300,7 +300,7 @@ const Passbook = ({ navigation }) => {
                     {/* --------------------------- */}
                     <View style={{ flexDirection: "row", height: 50, width: '100%', alignItems: "center", justifyContent: "flex-start" }}>
                         <PoppinsText content={name} style={{ color: 'white', fontSize: 20, marginLeft: 20 }}></PoppinsText>
-                        <View style={{ height: 20, width: 2, backgroundColor: "white", marginLeft: 10 }}></View>
+                        {/* <View style={{ height: 20, width: 2, backgroundColor: "white", marginLeft: 10 }}></View> */}
 
                         {/* <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
                             setPlatinumModal(true)

@@ -25,7 +25,7 @@ export const RegistrationMessage = `Thank you for joining ${clientName} Loyalty 
 export const permissionMessage = `To scan the QR code, the ${clientName} app must have access permissions. Please grant access to the camera`
 export const eKyc = true;  // send true if you want to call aadhar gst and pan api else false
 
-
+export const cameraPermissionMessage = "To capture QR codes, expolo app requires camera access"
 //Dashboard
 export const needCaimpaign = __DEV__ ? true : true;
 

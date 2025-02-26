@@ -81,15 +81,15 @@ const AddAddress = ({ navigation }) => {
   useEffect(() => {
     if (getLocationFormPincodeData) {
       console.log("getLocationFormPincodeData", getLocationFormPincodeData);
-      if (getLocationFormPincodeData.success) {
+      if (getLocationFormPincodeData?.success) {
         const address =
-          getLocationFormPincodeData.body[0].office +
+          getLocationFormPincodeData?.body[0].office +
           ", " +
-          getLocationFormPincodeData.body[0].district +
+          getLocationFormPincodeData?.body[0].district +
           ", " +
-          getLocationFormPincodeData.body[0].state +
+          getLocationFormPincodeData?.body[0].state +
           ", " +
-          getLocationFormPincodeData.body[0].pincode;
+          getLocationFormPincodeData?.body[0].pincode;
         let locationJson = {
           lat: "N/A",
           lon: "N/A",
@@ -134,9 +134,13 @@ const AddAddress = ({ navigation }) => {
     });
   };
 
-  const handleFetchPincode = (data) => {
-    console.log("pincode is", data);
-    getLocationFromPinCode(data);
+  const handleFetchPincode = (data,bool) => {
+    console.log("pincode is", bool);
+    if(bool)
+    {
+      getLocationFromPinCode(data);
+    }
+    
   };
   const modalClose = () => {
     setError(false);

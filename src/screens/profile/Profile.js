@@ -510,7 +510,7 @@ const Profile = ({ navigation }) => {
               marginLeft: 50,
             }}
           >
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => {
                 navigation.navigate("EditProfile", {
                   formFields: formFields,
@@ -530,7 +530,7 @@ const Profile = ({ navigation }) => {
               }}
             >
               <Edit name="edit" size={20} color={ternaryThemeColor}></Edit>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => {
                 deleteID();

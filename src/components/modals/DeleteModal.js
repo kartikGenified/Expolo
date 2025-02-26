@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import FastImage from "react-native-fast-image";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 const DeleteModal = (props) => {
   const [modalVisible, setModalVisible] = useState();
@@ -17,7 +18,8 @@ const DeleteModal = (props) => {
     : "grey";
     const userData = useSelector(state => state.appusersdata.userData)
     console.log("userdata",userData)
-
+  const {t} = useTranslation()
+  
   const gifUri = Image.resolveAssetSource(require('../../../assets/gif/loaderExpolo.gif')).uri;
     const [deleteDataFunc, {
         data: deleteDataData,

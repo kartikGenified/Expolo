@@ -57,7 +57,7 @@ const PrefilledTextInput = (props) => {
         {
             console.log("shouldReturnValue",value,placeHolder, props.value)
 
-            if(props.jsonData.name == "city" || props.jsonData.name == "district" || props.jsonData.name == "state")
+            if(props.jsonData.name == "city" || props.jsonData.name == "district" || props.jsonData.name == "state" || props.jsonData.name == "name")
             {
             props.handleData((props.value)?.replace(/[^\w\s]/gi, ''), props.placeHolder)
             }

@@ -105,7 +105,7 @@ export default function GiftCatalogue({ navigation }) {
           borderWidth: 0.2,
           borderColor: "#DDDDDD",
           elevation: 6,
-          height: 200,
+          height: 300,
           backgroundColor: "white",
           borderRadius: 4,
           margin: 10,
@@ -116,7 +116,7 @@ export default function GiftCatalogue({ navigation }) {
         <View
           style={{
             width: "100%",
-            height: "75%",
+            height: "50%",
             borderBottomWidth: 1,
             borderColor: "#DDDDDD",
           }}
@@ -135,7 +135,7 @@ export default function GiftCatalogue({ navigation }) {
           }}
         >
           <PoppinsTextMedium
-            style={{ color: ternaryThemeColor, fontSize: 14, fontWeight: "700" }}
+            style={{ color: ternaryThemeColor, fontSize: 12, fontWeight: "700" }}
             content={name?.toUpperCase()}
           ></PoppinsTextMedium>
           {/* <PoppinsTextMedium
@@ -143,7 +143,7 @@ export default function GiftCatalogue({ navigation }) {
             content={`Worth Rs : ${worth} INR`}
           ></PoppinsTextMedium> */}
           <PoppinsTextMedium
-            style={{ color: ternaryThemeColor, fontSize: 14, fontWeight: "700" }}
+            style={{ color: ternaryThemeColor, fontSize: 12, fontWeight: "700" }}
             content={`${t("Points")} : ${coin}`}
           ></PoppinsTextMedium>
         </View>

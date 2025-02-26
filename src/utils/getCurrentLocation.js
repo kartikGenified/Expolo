@@ -14,7 +14,7 @@ export const getCurrentLocation = async () => {
 
     const response = await fetch(url);
     const json = await response.json();
-
+    console.log("response pincode andasjdnans", response)
     if (json.results.length === 0) {
       throw new Error("No address found for the given coordinates.");
     }
@@ -47,14 +47,14 @@ export const getCurrentLocation = async () => {
   } catch (error) {
     console.error("Error getting location or address:", error);
     return {
-      lat: "N/A",
-      lon: "N/A",
-      address: "N/A",
-      postcode: "N/A",
-      country: "N/A",
-      state: "N/A",
-      district: "N/A",
-      city: "N/A",
+      lat: "",
+      lon: "",
+      address: "",
+      postcode: "",
+      country: "",
+      state: "",
+      district: "",
+      city: "",
     };
   }
 };

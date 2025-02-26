@@ -79,10 +79,10 @@ const PointHistory = ({ navigation }) => {
         (async () => {
           const credentials = await Keychain.getGenericPassword();
           const token = credentials.username;
-          const startDate = moment(start).format(
-            "YYYY-MM-DD"
-          )
-          const endDate = moment(end).format("YYYY-MM-DD")
+        //   const startDate = moment(start).format(
+        //     "YYYY-MM-DD"
+        //   )
+        //   const endDate = moment(end).format("YYYY-MM-DD")
           console.log("Start End",startDate,endDate)
     
           fetchUserPointsHistoryFunc({

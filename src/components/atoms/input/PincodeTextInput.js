@@ -45,13 +45,16 @@ const PincodeTextInput = (props) => {
         console.log(maxLength,text)
         if(text.length===6 )
         {
-        props.handleFetchPincode(text)
+        props.handleFetchPincode(text,true)
         let tempJsonData ={...props.jsonData,"value":text}
         console.log(tempJsonData)
         if(shouldReturnValue)
         props.handleData(value, placeHolder)
         else
         props.handleData(tempJsonData)
+        }
+        else{
+        props.handleFetchPincode(text,false)
 
         }
         // props.handleData(value)
