@@ -25,6 +25,8 @@ const MpinSetupScreen = (params) => {
   const [token, setToken] = useState("");
 
   const refInputs = useRef([]);
+
+
   const [error, setError] = useState(false);
   const [message, setMessage] = useState();
 
@@ -36,11 +38,12 @@ const MpinSetupScreen = (params) => {
   console.log("is forgot", ForgotMpin, userData);
 
   useEffect(() => {
-    console.log("mobile mobile", userData.mobile);
-    setMobile(userData?.mobile);
-    setToken(userData?.token);
+    if (userData) {
+      console.log("mobile mobile", userData?.mobile);
+      setMobile(userData?.mobile || "");
+      setToken(userData?.token || "");
+    }
   }, [userData]);
-
   console.log("peri peri ladyyyyyyy", userData);
 
   // let uid = params
@@ -65,24 +68,24 @@ const MpinSetupScreen = (params) => {
     ? useSelector((state) => state.apptheme.icon1)
     : require("../../../assets/images/demoIcon.png");
 
-  async function updateToken(newToken) {
-    const jsonValue = await AsyncStorage.getItem("loginData");
-
-    const parsedJsonValues = JSON.parse(jsonValue);
-
-    console.log("oldToken", parsedJsonValues?.token);
-    const newJsonValues = { ...parsedJsonValues, token: newToken };
-    const newUserData = { ...userData, token: newToken };
-
-    await AsyncStorage.setItem("kycData", JSON.stringify(newJsonValues));
-    setUserData(newUserData);
-
-    console.log("newToken", newJsonValues?.token);
-
-    const check = await AsyncStorage.getItem("loginData");
-
-    console.log("check", JSON.parse(check)?.token);
-  }
+    async function updateToken(newToken) {
+      try {
+        const jsonValue = await AsyncStorage.getItem("loginData");
+        const parsedJsonValues = jsonValue ? JSON.parse(jsonValue) : {};
+    
+        console.log("oldToken", parsedJsonValues?.token);
+        const newJsonValues = { ...parsedJsonValues, token: newToken };
+        const newUserData = { ...userData, token: newToken };
+    
+        await AsyncStorage.setItem("kycData", JSON.stringify(newJsonValues));
+        setUserData(newUserData);
+    
+        console.log("newToken", newJsonValues?.token);
+      } catch (error) {
+        console.error("Error updating token", error);
+      }
+    }
+    
 
   // useEffect(() => {
   //   if (mpinUpdateLoginData?.success) {
@@ -108,12 +111,19 @@ const MpinSetupScreen = (params) => {
 
     // Move to the next input if a number is entered
     if (text.length === 1 && index < 3) {
-      refInputs.current[index + 1].focus();
+      setTimeout(() => refInputs.current[index + 1]?.focus(), 10);
     }
     else{
       Keyboard.dismiss()
     }
   };
+
+  const setInputRef = (index, el) => {
+    if (el) {
+      refInputs.current[index] = el;
+    }
+  };
+  
 
   const modalClose = () => {
     setError(false);
@@ -142,28 +152,22 @@ const MpinSetupScreen = (params) => {
   // Store MPIN in AsyncStorage
   const saveMpin = async () => {
     const fullMpin = mpin.join("");
-    if (fullMpin.length == 4) {
+    if (fullMpin.length === 4) {
       console.log("Full Mpin", fullMpin);
-
+  
       await AsyncStorage.setItem("userMpin", fullMpin);
-      if(userData.user_type == "distributor"){
-
-        // navigation.reset({ index: "0", routes: [{ name: "UpdatePassword",params: { 
-        //   /* Your parameters here */
-        //   type: "login"
-        // } }] });
-        navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
-      }
-      else{
-      navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
-
+  
+      if (userData?.user_type === "distributor") {
+        navigation.reset({ index: 0, routes: [{ name: "Dashboard" }] });
+      } else {
+        navigation.reset({ index: 0, routes: [{ name: "Dashboard" }] });
       }
     } else {
-      // Alert.alert("Error", "Please enter all 4 digits of your MPIN.");
       setError(true);
       setMessage("Please Enter all 4 digits of your MPIN");
     }
   };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -209,20 +213,21 @@ const MpinSetupScreen = (params) => {
         Create Your MPIN
       </Text>
       <View style={styles.inputContainer}>
-        {mpin.map((digit, index) => (
-          <TextInput
-            key={index}
-            style={styles.input}
-            maxLength={1}
-            keyboardType="numeric"
-            value={digit}
-            onChangeText={(text) => handleInputChange(text, index)}
-            onKeyPress={(e) => handleKeyPress(e, index)} // Detect backspace
-            onBlur={() => handleBlur(index)} // Handle blur event
-            ref={(input) => (refInputs.current[index] = input)} // Assign input refs
-          />
-        ))}
-      </View>
+  {mpin.map((digit, index) => (
+    <TextInput
+      key={index}
+      style={styles.input}
+      maxLength={1}
+      keyboardType="numeric"
+      value={digit}
+      onChangeText={(text) => handleInputChange(text, index)}
+      onKeyPress={(e) => handleKeyPress(e, index)}
+      onBlur={() => handleBlur(index)}
+      ref={(el) => setInputRef(index, el)}
+
+    />
+  ))}
+</View>
       {error && (
         <ErrorModal
           modalClose={modalClose}

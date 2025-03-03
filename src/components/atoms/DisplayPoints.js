@@ -3,7 +3,6 @@ import React, { Component, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 
-
 const DisplayPoints = (props) => {
 
 const [value, setValue] = useState(props.pointBalance) 

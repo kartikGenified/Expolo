@@ -59,7 +59,9 @@ const MpinValidationScreen = (params) => {
   const navigationParams = params.route.params || {};
   console.log("Paramssssssssss", navigationParams);
 
-  const refInputs = useRef([]);
+  const refInputs = useRef(new Array(4).fill(null));
+
+
 
   // const kycData = useSelector((state) => state.kycDataSlice.kycData);
 
@@ -159,6 +161,12 @@ const MpinValidationScreen = (params) => {
   const icon = useSelector((state) => state.apptheme.icon1)
     ? useSelector((state) => state.apptheme.icon1)
     : require("../../../assets/images/demoIcon.png");
+
+    // useEffect(() => {
+    //   if (refInputs.current[0]) {
+    //     refInputs.current[0].focus();
+    //   }
+    // }, []);
 
   useEffect(() => {
     const fetchTerms = async () => {
@@ -494,7 +502,7 @@ const MpinValidationScreen = (params) => {
     setMpin(newMpin);
 
     // Move to the next input if a number is entered
-    if (text.length === 1 && index < 3) {
+    if (text.length === 1 && index < 3 && refInputs.current[index + 1]) {
       refInputs.current[index + 1].focus();
     }
     else{
@@ -530,26 +538,27 @@ const MpinValidationScreen = (params) => {
 
   // Validate MPIN
   const validateMpin = async () => {
-    const enteredMpin = mpin.join("");
-    // const storedMpin = await AsyncStorage.getItem('userMpin');
-    let mPin = await AsyncStorage.getItem("userMpin")
-
-    if(enteredMpin == mPin){
-      navigation.navigate("Dashboard")
+    try {
+      const enteredMpin = mpin?.join("");
+      const storedMpin = (await AsyncStorage.getItem("userMpin"))?.trim() ?? "";
+  
+      console.log("Entered MPIN:", enteredMpin);
+      console.log("Stored MPIN:", storedMpin);
+  
+      if (enteredMpin === storedMpin) {
+        navigation.navigate("Dashboard");
+      } else {
+        setError(true);
+        setMessage("Incorrect MPIN. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error fetching MPIN from AsyncStorage:", error);
+      setError(true);
+      setMessage("Something went wrong. Please try again.");
     }
-    else{
-      setError(true)
-      setMessage("Incorrect MPIN. Please try again.");
-    }
-
-
-    // if (uid != null && mpin.length == 4) {
-    //   mpinLoginFunc(data);
-    // } else {
-    //   Alert.alert("Error", "Incorrect MPIN. Please try again.");
-    // }
   };
-
+  
+  
   const modalClose = () => {
     setError(false);
   };
@@ -609,7 +618,11 @@ const MpinValidationScreen = (params) => {
             onChangeText={(text) => handleInputChange(text, index)}
             onKeyPress={(e) => handleKeyPress(e, index)}
             onBlur={() => handleBlur(index)}
-            ref={(input) => (refInputs.current[index] = input)}
+            ref={(input) => {
+              if (input) {
+                refInputs.current[index] = input;
+              }
+            }}
           />
         ))}
       </View>
