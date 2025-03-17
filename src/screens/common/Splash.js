@@ -290,7 +290,6 @@ const Splash = ({ navigation }) => {
         if (parsedJsonValues) {
           const getData = async () => {
             const value = await AsyncStorage.getItem("appMenu");
-            let mPin = await AsyncStorage.getItem("userMpin");
             const jsonValue = JSON.parse(value);
             try {
               console.log("jsonValueGetDashbaordData", jsonValue);
@@ -506,7 +505,6 @@ const Splash = ({ navigation }) => {
 
                 parsedJsonValue && getAppMenuFunc(parsedJsonValue?.token);
               } else {
-                let mPin = await AsyncStorage.getItem("userMpin");
                 console.log("data already present saving appmenu");
                 dispatch(setDrawerData(jsonValue));
                 dispatch(setAppUserId(parsedJsonValue.user_type_id));
@@ -528,32 +526,33 @@ const Splash = ({ navigation }) => {
                   minVersionSupport &&
                   jsonValue &&
                   getDashboardData &&
-                  getWorkflowData ){
+                  getWorkflowData )
+                  {
 
-                    if (mPin != "" && mPin != undefined && mPin != null) {
-                      setTimeout(()=>{
-                        navigation.reset({
-                          index: "0",
-                          routes: [{ name: "MpinValidationScreen" }],
-                        });
-                      },2000)
+                    // if (mPin != "" && mPin != undefined && mPin != null) {
+                    //   setTimeout(()=>{
+                    //     navigation.reset({
+                    //       index: "0",
+                    //       routes: [{ name: "MpinValidationScreen" }],
+                    //     });
+                    //   },2000)
                 
-                    } else {
-                      setTimeout(()=>{
-                        navigation.reset({
-                          index: "0",
-                          routes: [{ name: "SelectUser" }],
-                        });
-                      },1000)
+                    // } else {
+                    //   setTimeout(()=>{
+                    //     navigation.reset({
+                    //       index: "0",
+                    //       routes: [{ name: "SelectUser" }],
+                    //     });
+                    //   },1000)
                   
-                    }
+                    // }
                     
-                    // setTimeout(()=>{
-                    //   navigation.reset({
-                    //     index: "0",
-                    //     routes: [{ name: "Dashboard" }],
-                    //   });
-                    // },2000)
+                    setTimeout(()=>{
+                      navigation.reset({
+                        index: "0",
+                        routes: [{ name: "Dashboard" }],
+                      });
+                    },2000)
 
 
                 }
@@ -598,7 +597,6 @@ const Splash = ({ navigation }) => {
   useEffect(() => {
     if (getAppMenuData) {
       console.log("getAppMenuData", JSON.stringify(getAppMenuData));
-      let mPin ;
       if (parsedJsonValue) {  
         const tempDrawerData = getAppMenuData.body.filter((item) => {
           return item.user_type === parsedJsonValue.user_type;
@@ -607,7 +605,6 @@ const Splash = ({ navigation }) => {
           try {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem("appMenu", jsonValue);
-            mPin = await AsyncStorage.getItem("userMpin");
             
           } catch (e) {
             // saving error
@@ -632,19 +629,19 @@ const Splash = ({ navigation }) => {
           getWorkflowData 
         ){
           
-          if (mPin != "" && mPin != undefined && mPin != null) {
-            navigation.reset({
-              index: "0",
-              routes: [{ name: "MpinValidationScreen" }],
-            });
-          } else {
-            navigation.reset({
-              index: "0",
-              routes: [{ name: "SelectUser" }],
-            });
-          }
+          // if (mPin != "" && mPin != undefined && mPin != null) {
+          //   navigation.reset({
+          //     index: "0",
+          //     routes: [{ name: "MpinValidationScreen" }],
+          //   });
+          // } else {
+          //   navigation.reset({
+          //     index: "0",
+          //     routes: [{ name: "SelectUser" }],
+          //   });
+          // }
 
-          // navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
+          navigation.reset({ index: "0", routes: [{ name: "Dashboard" }] });
 
         }
    
@@ -691,7 +688,7 @@ const Splash = ({ navigation }) => {
                 const getData = async () => {
                   try {
                     const value = await AsyncStorage.getItem("appMenu");
-                    let mPin = await AsyncStorage.getItem("userMpin");
+                    // let mPin = await AsyncStorage.getItem("userMpin");
 
                     const jsonValue = JSON.parse(value);
                     console.log("jsonValueGetDashbaordData", jsonValue);
@@ -725,22 +722,22 @@ const Splash = ({ navigation }) => {
                           jsonValue &&
                             jsonValue &&
                             getWorkflowData ){
-                              // navigation.reset({
-                              //   index: "0",
-                              //   routes: [{ name: "Dashboard" }],
-                              // });
+                              navigation.reset({
+                                index: "0",
+                                routes: [{ name: "Dashboard" }],
+                              });
 
-                          if (mPin != "" && mPin != undefined && mPin != null) {
-                            navigation.reset({
-                              index: "0",
-                              routes: [{ name: "MpinValidationScreen" }],
-                            });
-                          } else {
-                            navigation.reset({
-                              index: "0",
-                              routes: [{ name: "SelectUser" }],
-                            });
-                          }
+                          // if (mPin != "" && mPin != undefined && mPin != null) {
+                          //   navigation.reset({
+                          //     index: "0",
+                          //     routes: [{ name: "MpinValidationScreen" }],
+                          //   });
+                          // } else {
+                          //   navigation.reset({
+                          //     index: "0",
+                          //     routes: [{ name: "SelectUser" }],
+                          //   });
+                          // }
 
                             }
                       

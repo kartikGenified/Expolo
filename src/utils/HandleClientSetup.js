@@ -4,7 +4,7 @@
 export const clientName = "gautam-garments";
 export const clientID = 30;
 
-export const baseUrl = "https://saas.genefied.in/" // "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/"" "https://saas.genefied.in/""
+export const baseUrl ="https://saas.genefied.in/"  //"https://saas.genefied.in/"  "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/"" "https://saas.genefied.in/""
 
 //icons and images
 export const appIcon = require("../../assets/images/logoExpolo.png");
@@ -29,7 +29,7 @@ export const cameraPermissionMessage = "To capture QR codes, expolo app requires
 //Dashboard
 export const needCaimpaign = __DEV__ ? true : true;
 
-export const scannerType = "qr"; //"qr for qr", "bar for bar
+export const scannerType = "qr"; //"qr for qr", "bar for bar"
 
 // choose from ["points", "scanned", "redeemed", "cashback","coupon", "warranty", "wheel","previous transaction","wheel","shared"]
 export const neededHistory = [
