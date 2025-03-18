@@ -205,7 +205,7 @@ const PointHistory = ({ navigation }) => {
     const PointCategoryTab=()=>{
         const [type, setType] = useState("")
         return(
-            <ScrollView horizontal={true} contentContainerStyle={{alignItems:'center',justifyContent:'center'}} style={{backgroundColor:'white',height:70,elevation:1,opacity:0.8,borderWidth:1,borderColor:"grey"}}>
+            <ScrollView horizontal={true} contentContainerStyle={{alignItems:'center',justifyContent:'center'}} style={{backgroundColor:'white',height:90,elevation:1,opacity:0.8,borderWidth:1,borderColor:"grey"}}>
                 {registrationRequired.includes(userData.user_type) && 
                 <TouchableOpacity  onPress={()=>{
                     (async () => {

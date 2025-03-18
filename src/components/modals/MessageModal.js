@@ -31,7 +31,10 @@ const MessageModal = (props) => {
   const closeModal=()=>{
     setModalVisible(false)
     props.modalClose()
-    navigateTo && navigation.replace(navigateTo,params)
+    
+    navigateTo &&  setTimeout(() => {
+      navigation.replace(navigateTo,params)
+    }, 1000); 
   }
    
 

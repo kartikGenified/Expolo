@@ -679,6 +679,7 @@ const BasicInfo = ({ navigation, route }) => {
   
 
   const handleRegistrationFormSubmission = () => {
+    
     let continueFormSubmission =false;
     console.log(
       "handleRegistrationFormSubmission",
@@ -734,6 +735,7 @@ const BasicInfo = ({ navigation, route }) => {
     const body = inputFormData;
     console.log("registration output", body);
 
+    
     if (otpVerified) {
       const keys = Object.keys(body);
       const values = Object.values(body);
@@ -796,8 +798,10 @@ const BasicInfo = ({ navigation, route }) => {
               }
             }
           } else {
+            
             setError(true);
             setMessage(missingParam);
+            
           }
         } else {
           console.log("emailasdbvashjvhdvashvhdv", values[index]);
