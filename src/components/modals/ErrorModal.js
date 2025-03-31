@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
+import { Alert, Modal, StyleSheet, Text, Pressable, View, Image, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -22,18 +22,33 @@ const ErrorModal = (props) => {
   const navigateTo = props.navigateTo
 
   console.log("product data in report an issue", productData,navigateTo)
+  console.log("props open modal show modal", props.openModal)
 
   const {t} = useTranslation()
 
   
   useEffect(() => {
     if (props.openModal === true) {
+      if(Platform.OS == 'android')
       setModalVisible(true)
+      
+      else
+      setTimeout(() => {
+      setModalVisible(true)
+      }, 200);
+
     }
     else {
+      if(Platform.OS == 'android')
       setModalVisible(false)
+
+      else
+      setTimeout(() => {
+      setModalVisible(false)
+      }, 200);
     }
   }, [])
+
   useEffect(()=>{
     // navigation.navigate(navigateTo)
   },[navigateTo])

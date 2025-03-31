@@ -475,40 +475,40 @@ const QrCodeScanner = ({ navigation, route }) => {
       setIsLoading(false);
       dispatch(setProductMrp(verifyQrData?.body?.qr));
 
-      // let qrStatus,statusCode;
+      let qrStatus,statusCode;
 
-      // if(verifyQrData?.body?.qr!==undefined)
-      // {
-      //   qrStatus = verifyQrData.body?.qr?.qr_status == undefined
-      //   statusCode = verifyQrData?.status;
+      if(verifyQrData?.body?.qr!==undefined)
+      {
+        qrStatus = verifyQrData.body?.qr?.qr_status == undefined
+        statusCode = verifyQrData?.status;
 
-      //  if (qrStatus === "1") {
-      //    addQrDataToList(verifyQrData.body.qr);
-      //  }
-      // }
-      // else{
-      //   dispatch(setProductMrp(verifyQrData?.body))
-      //   qrStatus = verifyQrData.body?.qr_status == undefined
-      //   statusCode = verifyQrData?.status;
+       if (qrStatus === "1") {
+         addQrDataToList(verifyQrData.body.qr);
+       }
+      }
+      else{
+        dispatch(setProductMrp(verifyQrData?.body))
+        qrStatus = verifyQrData.body?.qr_status == undefined
+        statusCode = verifyQrData?.status;
 
-      //  if (qrStatus === "1") {
-      //    addQrDataToList(verifyQrData.body);
-      //  }
-      // }
+       if (qrStatus === "1") {
+         addQrDataToList(verifyQrData.body);
+       }
+      }
 
-      // if (qrStatus === "2") {
-      //   if (statusCode === 201) {
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   } else if (statusCode === 202) {
-      //     setIsReportable(true);
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   } else if (statusCode === 200) {
-      //     setError(true);
-      //     setMessage(verifyQrData.message);
-      //   }
-      // }
+      if (qrStatus === "2") {
+        if (statusCode === 201) {
+          setError(true);
+          setMessage(verifyQrData.message);
+        } else if (statusCode === 202) {
+          setIsReportable(true);
+          setError(true);
+          setMessage(verifyQrData.message);
+        } else if (statusCode === 200) {
+          setError(true);
+          setMessage(verifyQrData.message);
+        }
+      }
     } else if (verifyQrError) {
       setIsLoading(false);
       if (verifyQrError === undefined) {
@@ -636,9 +636,24 @@ const QrCodeScanner = ({ navigation, route }) => {
                     setError(true);
                     setMessage(response?.data.message);
                   } else if (statusCode === 202) {
-                    setIsReportable(true);
-                    setError(true);
-                    setMessage(response?.data.message);
+                    if(Platform.OS == 'android')
+                    {
+                      setIsReportable(true);
+                      setError(true);
+                      setMessage(response?.data.message);
+                    }
+                    else
+                    {
+                      setTimeout(() => {
+                        console.log("scannning already scanned qr code unable to scan")
+                        
+                      setError(true);
+                      }, 1000);
+                      setIsReportable(true);
+                      setMessage(response?.data.message);
+
+                    }
+                    
                   } else if (statusCode === 200) {
                     setError(true);
                     setMessage(response?.data.message);
@@ -1402,7 +1417,10 @@ const QrCodeScanner = ({ navigation, route }) => {
             >
               <TouchableOpacity
                 onPress={() => {
+                  console.log("closing qr code scanner app")
+                  setTimeout(() => {
                   navigation.navigate("Dashboard");
+                  }, 1000);
                 }}
                 style={{ height: 34, width: 34, margin: 10, left: 20 }}
               >

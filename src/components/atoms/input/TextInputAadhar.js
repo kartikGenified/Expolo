@@ -34,7 +34,7 @@ const TextInputAadhar = (props) => {
   )
     ? useSelector(state => state.apptheme.ternaryThemeColor)
     : 'grey';
-    const gifUri = Image.resolveAssetSource(require('../../../../assets/gif/loader.gif')).uri;
+    const gifUriExpolo = Image.resolveAssetSource(require('../../../../assets/gif/loaderExpolo.gif')).uri;
     Keyboard.addListener("keyboardDidShow", () => {
       setKeyboardShow(true);
     });
@@ -185,7 +185,7 @@ const TextInputAadhar = (props) => {
             <View style={{alignItems:"center",justifyContent:'center',backgroundColor:'white',position:"absolute",top:-15,left:16}}>
                 <PoppinsTextMedium style={{color:"#919191",padding:4,fontSize:18}} content = {t(label)}></PoppinsTextMedium>
             </View>
-            <TextInput accessibilityLabel={accessLabel} maxLength={12} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'80%',alignItems:"center",justifyContent:"center",fontWeight:'500',color:'black',fontSize:16,position:'absolute',left:14}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ?  `${placeHolder} *` : `${placeHolder}`}></TextInput>
+            <TextInput editable={!verifyAadharData} accessibilityLabel={accessLabel} maxLength={12} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'80%',alignItems:"center",justifyContent:"center",fontWeight:'500',color:'black',fontSize:16,position:'absolute',left:14}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ?  `${placeHolder} *` : `${placeHolder}`}></TextInput>
             {aadharVerified && <View style={{alignItems:'center',justifyContent:'center',width:'20%',position:'absolute',right:0}}>
               <Image style={{height:30,width:30,resizeMode:'contain'}} source={require('../../../../assets/images/greenTick.png')}></Image>
             </View>}
@@ -214,7 +214,7 @@ const TextInputAadhar = (props) => {
       {(verifyAadharIsLoading || sendAadharOtpIsLoading || showLoading) && <FastImage
           style={{ width: 30, height: 30, alignSelf: 'center',position:'absolute',right:10 }}
           source={{
-            uri: gifUri, // Update the path to your GIF
+            uri: gifUriExpolo, // Update the path to your GIF
             priority: FastImage.priority.normal,
           }}
           resizeMode={FastImage.resizeMode.contain}

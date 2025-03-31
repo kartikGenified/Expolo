@@ -4,7 +4,9 @@ import PoppinsTextMedium from '../../electrons/customFonts/PoppinsTextMedium';
 import { useVerifyPanMutation } from '../../../apiServices/verification/PanVerificationApi';
 import ZoomImageAnimation from '../../animations/ZoomImageAnimation';
 import ErrorModal from '../../modals/ErrorModal';
+import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+
 const TextInputPan = (props) => {
   const [value, setValue] = useState()
   const [modalVisible, setModalVisible] = useState(false);
@@ -13,6 +15,7 @@ const TextInputPan = (props) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [panVerified, setPanVerified] = useState(false)
+  const gifUriExpolo = Image.resolveAssetSource(require('../../../../assets/gif/loaderExpolo.gif')).uri;
   const placeHolder = props.placeHolder
   const required = props.required
   let displayText = props.placeHolder
@@ -125,10 +128,18 @@ const TextInputPan = (props) => {
         <PoppinsTextMedium style={{ color: "#919191", padding: 4, fontSize: 18 }} content={t(displayText)}></PoppinsTextMedium>
       </View>
       <View style={{ width: '80%', alignItems: 'center', justifyContent: 'center', position: 'absolute', left: 10 }}></View>
-      <TextInput accessibilityLabel={accessLabel} maxLength={10} onSubmitEditing={(text) => { handleInputEnd() }} onEndEditing={(text) => { handleInputEnd() }} style={{ height: 50, width: '100%', alignItems: "center", justifyContent: "flex-start", fontWeight: '500', marginLeft: 24, color: 'black', fontSize: 16 }} placeholderTextColor="grey" onChangeText={(text) => { handleInput(text) }} value={value} placeholder={required ? `${placeHolder} *` : `${placeHolder}`}></TextInput>
+      <TextInput editable={!verifyPanData} accessibilityLabel={accessLabel} maxLength={10} onSubmitEditing={(text) => { handleInputEnd() }} onEndEditing={(text) => { handleInputEnd() }} style={{ height: 50, width: '100%', alignItems: "center", justifyContent: "flex-start", fontWeight: '500', marginLeft: 24, color: 'black', fontSize: 16 }} placeholderTextColor="grey" onChangeText={(text) => { handleInput(text) }} value={value} placeholder={required ? `${placeHolder} *` : `${placeHolder}`}></TextInput>
       {success && <View style={{ alignItems: 'center', justifyContent: 'center', width: '20%', position: 'absolute', right: 0 }}>
         <Image style={{ height: 30, width: 30, resizeMode: 'contain' }} source={require('../../../../assets/images/greenTick.png')}></Image>
       </View>}
+      {verifyPanIsLoading && <FastImage
+          style={{ width: 30, height: 30, alignSelf: 'center',position:'absolute',right:10 }}
+          source={{
+            uri: gifUriExpolo, // Update the path to your GIF
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
+        />}
     </View>
   );
 }

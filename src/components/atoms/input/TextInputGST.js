@@ -3,6 +3,7 @@ import {View, StyleSheet,TextInput,Modal,Pressable,Text,Image,Keyboard} from 're
 import PoppinsTextMedium from '../../electrons/customFonts/PoppinsTextMedium';
 import { useVerifyGstMutation } from '../../../apiServices/verification/GstinVerificationApi';
 import ZoomImageAnimation from '../../animations/ZoomImageAnimation';
+import FastImage from 'react-native-fast-image';
 
 const TextInputGST = (props) => {
     const [value,setValue] = useState()
@@ -12,7 +13,9 @@ const TextInputGST = (props) => {
     const accessLabel = props.accessLabel
     const placeHolder = props.placeHolder
     const required = props.required
-  const label = props.label
+    const gifUriExpolo = Image.resolveAssetSource(require('../../../../assets/gif/loaderExpolo.gif')).uri;
+
+    const label = props.label
     const [verifyGstFunc,{
         data:verifyGstData,
         error:verifyGstError,
@@ -106,10 +109,18 @@ const TextInputGST = (props) => {
             <View style={{alignItems:"center",justifyContent:'center',backgroundColor:'white',position:"absolute",top:-15,left:16}}>
                 <PoppinsTextMedium style={{color:"#919191",padding:4,fontSize:18}} content = {label}></PoppinsTextMedium>
             </View>
-            <TextInput accessibilityLabel={accessLabel} maxLength={15} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'100%',alignItems:"center",justifyContent:"flex-start",fontWeight:'500',marginLeft:24,color:'black',fontSize:16}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ? `${placeHolder} *`: `${placeHolder}`}></TextInput>
+            <TextInput editable={!verifyGstData} accessibilityLabel={accessLabel} maxLength={15} onSubmitEditing={(text)=>{handleInputEnd()}} onEndEditing={(text)=>{handleInputEnd()}} style={{height:50,width:'100%',alignItems:"center",justifyContent:"flex-start",fontWeight:'500',marginLeft:24,color:'black',fontSize:16}} placeholderTextColor="grey" onChangeText={(text)=>{handleInput(text)}} value={value} placeholder={required ? `${placeHolder} *`: `${placeHolder}`}></TextInput>
             
         </View>
         {error && <PoppinsTextMedium style={{color:"red"}} content="Error in verifying GSTIN"></PoppinsTextMedium>}
+        {verifyGstIsLoading && <FastImage
+          style={{ width: 30, height: 30, alignSelf: 'center',position:'absolute',right:10 }}
+          source={{
+            uri: gifUriExpolo, // Update the path to your GIF
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
+        />}
         </>
     );
 }
