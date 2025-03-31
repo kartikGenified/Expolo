@@ -37,8 +37,11 @@ const AlertModal = (props) => {
   },[navigateTo])
   const closeModal = () => {
    
-    
-    navigateTo &&  navigation.replace(navigateTo)
+    navigateTo &&  setTimeout(() => {
+      navigation.replace(navigateTo)
+    }, 1000); 
+
+
     
     props.modalClose()
     setModalVisible(!modalVisible)

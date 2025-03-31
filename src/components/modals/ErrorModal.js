@@ -55,7 +55,10 @@ const ErrorModal = (props) => {
   const closeModal = () => {
    
     
-    navigateTo &&  navigation.replace(navigateTo,params)
+    // navigateTo &&  navigation.replace(navigateTo,params)
+    navigateTo &&  setTimeout(() => {
+      navigation.replace(navigateTo,params)
+    }, 1000); 
     
     props.modalClose()
     setModalVisible(false)
