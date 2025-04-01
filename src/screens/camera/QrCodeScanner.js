@@ -633,8 +633,22 @@ const QrCodeScanner = ({ navigation, route }) => {
                   setIsDuplicateQr(updatedDuplicateQr);
 
                   if (statusCode === 201) {
-                    setError(true);
-                    setMessage(response?.data.message);
+                    if(Platform.OS == 'android')
+                    {
+                      setError(true);
+                      setMessage(response?.data.message);
+                    }
+                    else
+                    {
+                      setTimeout(() => {
+                        console.log("scannning already scanned qr code unable to scan")
+                        
+                      setError(true);
+                      }, 1000);
+                      setMessage(response?.data.message);
+
+                    }
+                   
                   } else if (statusCode === 202) {
                     if(Platform.OS == 'android')
                     {

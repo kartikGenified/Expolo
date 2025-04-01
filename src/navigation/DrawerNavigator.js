@@ -333,13 +333,21 @@ const CustomDrawer = () => {
                   title: "Share APP",
                   url: shareAppLink,
                 };
-                Share.open(options)
+                console.log("Share app link", shareAppLink)
+                if(shareAppLink.length!=0)
+                {
+                  Share.open(options)
                   .then((res) => {
                     console.log(res);
                   })
                   .catch((err) => {
                     err && console.log(err);
                   });
+                }
+                else{
+                  alert("Cannot share the app currently")
+                }
+                
               }
             }}
           >

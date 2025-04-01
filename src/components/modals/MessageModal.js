@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {Alert, Modal, StyleSheet, Text, Pressable, View,BackHandler} from 'react-native';
+import {Alert, Modal, StyleSheet, Text, Pressable, View,BackHandler, Platform} from 'react-native';
 import { useSelector } from 'react-redux';
 import  Icon  from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -31,10 +31,11 @@ const MessageModal = (props) => {
   const closeModal=()=>{
     setModalVisible(false)
     props.modalClose()
-    
-    navigateTo &&  setTimeout(() => {
-      navigation.replace(navigateTo,params)
-    }, 1000); 
+    if(navigateTo)
+   {
+    Platform.OS=='android' ? navigation.replace(navigateTo,params) : navigation.navigate(navigateTo,params)
+
+   }
   }
    
 
@@ -49,7 +50,11 @@ const MessageModal = (props) => {
         onRequestClose={() => {
             props.modalClose()
           setModalVisible(!modalVisible);
-         navigateTo &&  navigation.replace(navigateTo)
+          if(navigateTo)
+   {
+    Platform.OS=='android' ? navigation.replace(navigateTo,params) : navigation.navigate(navigateTo,params)
+
+   }
         }}>
         <View style={styles.centeredView}>
           <View style={{...styles.modalView,borderWidth:3,borderColor:'#2FBA7E'}}>

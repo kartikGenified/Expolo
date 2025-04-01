@@ -31,7 +31,7 @@ const ErrorModal = (props) => {
     if (props.openModal === true) {
       if(Platform.OS == 'android')
       setModalVisible(true)
-      
+
       else
       setTimeout(() => {
       setModalVisible(true)
@@ -56,9 +56,14 @@ const ErrorModal = (props) => {
    
     
     // navigateTo &&  navigation.replace(navigateTo,params)
-    navigateTo &&  setTimeout(() => {
-      navigation.replace(navigateTo,params)
-    }, 1000); 
+
+    if(navigateTo)
+          {
+           Platform.OS=='android' ? navigation.replace(navigateTo,params) : navigation.navigate(navigateTo,params)
+       
+          }
+
+   
     
     props.modalClose()
     setModalVisible(false)
@@ -84,7 +89,12 @@ const ErrorModal = (props) => {
         onRequestClose={() => {
           props.modalClose()
           setModalVisible(!modalVisible);
-         navigateTo &&  navigation.replace(navigateTo,params)
+
+         if(navigateTo)
+          {
+           Platform.OS=='android' ? navigation.replace(navigateTo,params) : navigation.navigate(navigateTo,params)
+       
+          }
         }}>
         <View style={styles.centeredView}>
           <View style={{ ...styles.modalView}}>

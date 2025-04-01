@@ -530,7 +530,7 @@ const OtpVerification = ({ navigation, route }) => {
             title={"Thanks"}
             message={message}
             openModal={success}
-            navigateTo="RedeemedHistory"
+            navigateTo="Dashboard"
           ></MessageModal>
         )}
       </View>
