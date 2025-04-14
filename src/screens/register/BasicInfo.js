@@ -9,6 +9,7 @@ import {
   ScrollView,
   Dimensions,
   Text,
+  ActivityIndicator,
 } from "react-native";
 import PoppinsTextMedium from "../../components/electrons/customFonts/PoppinsTextMedium";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,13 +49,28 @@ import { validatePathConfig } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
 import { GoogleMapsKey } from "@env";
+import Icon from 'react-native-vector-icons/Feather';
+import Close from 'react-native-vector-icons/Ionicons';
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MessageModalNavigate from "../../components/modals/MessageModalNavigate";
+import { setAppUserId, setAppUserName, setAppUserType, setId, setUserData } from "../../../redux/slices/appUserDataSlice";
+import { useFetchLegalsMutation } from "../../apiServices/fetchLegal/FetchLegalApi";
+import { useGetAppMenuDataMutation } from "../../apiServices/dashboard/AppUserDashboardMenuAPi.js";
+import { useGetAppUserBannerDataMutation } from "../../apiServices/dashboard/AppUserBannerApi";
+import { useGetAppDashboardDataMutation } from "../../apiServices/dashboard/AppUserDashboardApi";
+import { useGetWorkflowMutation } from "../../apiServices/workflow/GetWorkflowByTenant";
+import { setBannerData, setDashboardData } from "../../../redux/slices/dashboardDataSlice";
+import { setPolicy, setTerms } from "../../../redux/slices/termsPolicySlice";
+import { setDrawerData } from "../../../redux/slices/drawerDataSlice";
+import ModalWithBorder from "../../components/modals/ModalWithBorder";
+import { setIsGenuinityOnly, setProgram, setWorkflow } from "../../../redux/slices/appWorkflowSlice";
 
 const BasicInfo = ({ navigation, route }) => {
   const [userName, setUserName] = useState(route.params.name);
   const [userMobile, setUserMobile] = useState(route.params.mobile);
   const [message, setMessage] = useState();
+  const [openModalWithBorder, setModalWithBorder] = useState(false)
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [registrationForm, setRegistrationForm] = useState([]);
@@ -78,7 +94,7 @@ const BasicInfo = ({ navigation, route }) => {
   const [pansVerified, setPansVerified] = useState(false);
   const [panEntered, setPanEntered] = useState(false);
   const [panRequired, setPanRequired] = useState(false);
-
+  const [successRegister, setSuccessRegister] = useState(false)
   const [gstVerified, setGstVerified] = useState(false);
   const [gstEntered, setGstEntered] = useState(false);
   const [gstinRequired, setGstinRequired] = useState(false);
@@ -157,6 +173,50 @@ const BasicInfo = ({ navigation, route }) => {
     },
   ] = useGetFormAccordingToAppUserTypeMutation();
 
+  const [getTermsAndCondition, {
+    data: getTermsData,
+    error: getTermsError,
+    isLoading: termsLoading,
+    isError: termsIsError
+  }] = useFetchLegalsMutation();
+
+  const [getPolicies, {
+    data: getPolicyData,
+    error: getPolicyError,
+    isLoading: policyLoading,
+    isError: policyIsError
+  }] = useFetchLegalsMutation();
+
+  const [getAppMenuFunc, {
+    data: getAppMenuData,
+    error: getAppMenuError,
+    isLoading: getAppMenuIsLoading,
+    isError: getAppMenuIsError
+  }] = useGetAppMenuDataMutation()
+
+  const [getBannerFunc, {
+    data: getBannerData,
+    error: getBannerError,
+    isLoading: getBannerIsLoading,
+    isError: getBannerIsError
+  }] = useGetAppUserBannerDataMutation()
+
+  const [getDashboardFunc, {
+    data: getDashboardData,
+    error: getDashboardError,
+    isLoading: getDashboardIsLoading,
+    isError: getDashboardIsError
+  }] = useGetAppDashboardDataMutation()
+
+  const [getWorkflowFunc, {
+    data: getWorkflowData,
+    error: getWorkflowError,
+    isLoading: getWorkflowIsLoading,
+    isError: getWorkflowIsError
+  }] = useGetWorkflowMutation()
+
+  
+
   const [
     registerUserFunc,
     {
@@ -166,26 +226,7 @@ const BasicInfo = ({ navigation, route }) => {
       isError: registerUserIsError,
     },
   ] = useRegisterUserByBodyMutation();
-
-  const [
-    updateProfileAtRegistrationFunc,
-    {
-      data: updateProfileAtRegistrationData,
-      error: updateProfileAtRegistrationError,
-      isLoading: updateProfileAtRegistrationIsLoading,
-      isError: updateProfileAtRegistrationIsError,
-    },
-  ] = useUpdateProfileAtRegistrationMutation();
-
-  const [
-    getLocationFromPincodeFunc,
-    {
-      data: getLocationFormPincodeData,
-      error: getLocationFormPincodeError,
-      isLoading: getLocationFormPincodeIsLoading,
-      isError: getLocationFromPincodeIsError,
-    },
-  ] = useGetLocationFromPinMutation();
+  
 
   // send otp for login--------------------------------
   const [
@@ -207,6 +248,129 @@ const BasicInfo = ({ navigation, route }) => {
       isError: verifyOtpIsError,
     },
   ] = useVerifyOtpForNormalUseMutation();
+
+
+  useEffect(()=>{
+    const fetchTerms = async () => {
+      // const credentials = await Keychain.getGenericPassword();
+      // const token = credentials.username;
+      const params = {
+        type: "term-and-condition"
+      }
+      getTermsAndCondition(params)
+    }
+    fetchTerms()
+
+
+    const fetchPolicies = async () => {
+      // const credentials = await Keychain.getGenericPassword();
+      // const token = credentials.username;
+      const params = {
+        type: "privacy-policy"
+      }
+      getPolicies(params)
+    }
+    fetchPolicies()
+   
+  },[])
+
+  useEffect(() => {
+    if (getWorkflowData) {
+      if (getWorkflowData.length === 1 && getWorkflowData[0] === "Genuinity") {
+        dispatch(setIsGenuinityOnly())
+      }
+      const removedWorkFlow = getWorkflowData?.body[0]?.program.filter((item, index) => {
+        return item !== "Warranty"
+      })
+      console.log("getWorkflowData", getWorkflowData)
+      dispatch(setProgram(removedWorkFlow))
+      dispatch(setWorkflow(getWorkflowData?.body[0]?.workflow_id))
+      const form_type = "2"
+        registerUserData?.body && getFormFunc({ form_type:form_type, token:registerUserData?.body?.token })
+
+    }
+    else if(getWorkflowError) {
+      console.log("getWorkflowError",getWorkflowError)
+      setError(true)
+      setMessage("Oops something went wrong")
+    }
+  }, [getWorkflowData, getWorkflowError])
+
+
+  useEffect(() => {
+    if (getDashboardData) {
+      console.log("getDashboardData", getDashboardData,registerUserData?.body.token)
+      dispatch(setDashboardData(getDashboardData?.body?.app_dashboard))
+      registerUserData?.body && getBannerFunc(registerUserData?.body?.token)
+    }
+    else if (getDashboardError) {
+      setError(true)
+      setMessage("Can't get dashboard data, kindly retry.")
+      console.log("getDashboardError", getDashboardError)
+    }
+  }, [getDashboardData, getDashboardError])
+
+  useEffect(() => {
+    if (getBannerData) {
+      // console.log("getBannerData", getBannerData?.body)
+      const images = Object.values(getBannerData?.body).map((item) => {
+        return item.image[0]
+      })
+      // console.log("imagesBanner", images)
+      dispatch(setBannerData(images))
+      console.log("registerUserData?.body",registerUserData?.body)
+      registerUserData?.body && getWorkflowFunc({userId:registerUserData?.body?.user_type_id, token:registerUserData?.body?.token })
+    }
+    else if(getBannerError){
+      setError(true)
+      setMessage("Unable to fetch app banners")
+      console.log("getBannerError",getBannerError)
+    }
+  }, [getBannerError, getBannerData])
+
+  useEffect(() => {
+    if (getTermsData) {
+      // console.log("getTermsData", getTermsData.body.data?.[0]?.files[0]);
+      dispatch(setTerms(getTermsData.body.data?.[0]?.files[0]))
+    }
+    else if (getTermsError) {
+      console.log("gettermserror", getTermsError)
+    }
+  }, [getTermsData, getTermsError])
+
+  useEffect(() => {
+    if (getPolicyData) {
+      console.log("getPolicyData123>>>>>>>>>>>>>>>>>>>", getPolicyData);
+      dispatch(setPolicy(getPolicyData?.body?.data?.[0]?.files?.[0]))
+    }
+    else if (getPolicyError) {
+      setError(true)
+      setMessage(getPolicyError?.message)
+      console.log("getPolicyError>>>>>>>>>>>>>>>", getPolicyError)
+    }
+  }, [getPolicyData, getPolicyError])
+
+  useEffect(() => {
+    if (getAppMenuData) {
+      // console.log("usertype", userData.user_type)
+      console.log("getAppMenuData", JSON.stringify(getAppMenuData))
+      if(registerUserData?.body)
+      {
+        const tempDrawerData = getAppMenuData.body.filter((item) => {
+          return item.user_type === registerUserData?.body.user_type
+        })
+        // console.log("tempDrawerData", JSON.stringify(tempDrawerData))
+        tempDrawerData &&  dispatch(setDrawerData(tempDrawerData[0]))
+        setModalWithBorder(true)
+
+      }
+      
+    }
+    else if (getAppMenuError) {
+
+      console.log("getAppMenuError", getAppMenuError)
+    }
+  }, [getAppMenuData, getAppMenuError])
 
   useEffect(() => {
     if (timer > 0) {
@@ -334,64 +498,34 @@ const BasicInfo = ({ navigation, route }) => {
         });
     });
   }, []);
-  useEffect(() => {
-    if (getLocationFormPincodeData) {
-      console.log("getLocationFormPincodeData", getLocationFormPincodeData);
-      if (getLocationFormPincodeData.success) {
-        const address =
-          getLocationFormPincodeData.body[0].office +
-          ", " +
-          getLocationFormPincodeData.body[0].district +
-          ", " +
-          getLocationFormPincodeData.body[0].state +
-          ", " +
-          getLocationFormPincodeData.body[0].pincode;
-        let locationJson = {
-          lat: "N/A",
-          lon: "N/A",
-          address: address,
-          city: getLocationFormPincodeData.body[0].district,
-          district: getLocationFormPincodeData.body[0].division,
-          state: getLocationFormPincodeData.body[0].state,
-          country: "N/A",
-          postcode: getLocationFormPincodeData.body[0].pincode,
-        };
-        console.log("getLocationFormPincodeDataLocationJson", locationJson);
-        setLocation(locationJson);
-      }
-    } else if (getLocationFormPincodeError) {
-      console.log("getLocationFormPincodeError", getLocationFormPincodeError);
-      setError(true);
-      setMessage(getLocationFormPincodeError.data.message);
-    }
-  }, [getLocationFormPincodeData, getLocationFormPincodeError]);
+  
 
   useEffect(() => {
     if (getFormData) {
+      console.log("Form Fields", JSON.stringify(getFormData));
+
       if (getFormData.message !== "Not Found") {
-        console.log("Form Fields", JSON.stringify(getFormData));
 
         const values = Object.values(getFormData.body.template);
         setRegistrationForm(values);
         console.log("values values are bering printed", values.length);
-        if (values)
-          for (let i = 0; i < values; i++) {
-            console.log("form values are being printed", values[i]);
-            if (values[i].label == "Aadhaar" && values[i].required) {
-              setAadhaarRequired(true);
-            }
-            if (values[i].label == "Pan" && values[i].required) {
-              setPanRequired(true);
-            }
-            if (values[i].label == "Gstin" && values[i].required) {
-              setGstinRequired(true);
-            }
-          }
-      } else {
-        setError(true);
-        setMessage("Form can't be fetched");
-        setFormFound(false);
+        
+         
       }
+      const fetchMenu = async () => {
+        console.log("fetching app menu getappmenufunc")
+        const credentials = await Keychain.getGenericPassword();
+        if (credentials) {
+          console.log(
+            'Credentials successfully loaded for user ' + credentials.username
+          );
+          const token = credentials.username
+          getAppMenuFunc(token)
+        }
+    
+      }
+      
+      fetchMenu()
     } else if (getFormError) {
       console.log("Form Field Error", getFormError);
     }
@@ -401,13 +535,48 @@ const BasicInfo = ({ navigation, route }) => {
     if (registerUserData) {
       console.log("data after submitting form", registerUserData);
       if (registerUserData.success) {
-        setSuccess(true);
-        setMessage(
-          t(
-            "Thank you for joining Expolo Loyalty program, we will get back to you within 1-2 working days"
-          )
-        );
+        // setSuccessRegister(true);
+        // setMessage(
+        //   t(
+        //     "Thank you for joining Expolo Loyalty program, we will get back to you within 1-2 working days"
+        //   )
+        // );
+        registerUserData?.body?.token && getDashboardFunc(registerUserData?.body?.token)
+
         setModalTitle(t("Greetings"));
+        const storeData = async (value) => {
+          console.log("storeDataloginData",value)
+          try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem('loginData', jsonValue);
+          } catch (e) {
+            console.log("Error while saving loginData", e)
+          }
+        };
+        storeData(registerUserData?.body)
+        const saveUserDetails = (data) => {
+
+          try {
+            console.log("Saving user details", data)
+            dispatch(setAppUserId(data?.user_type_id))
+            dispatch(setAppUserName(data?.name))
+            dispatch(setAppUserType(data?.user_type))
+            dispatch(setUserData(data))
+            dispatch(setId(data?.id))
+          }
+          catch (e) {
+            console.log("error", e)
+          }
+        }
+        saveUserDetails(registerUserData?.body)
+
+        const saveToken = async (data) => {
+          const token = data
+          const password = '17dec1998'
+      
+          await Keychain.setGenericPassword(token, password);
+        }
+        saveToken(registerUserData?.body?.token)
       }
       setHideButton(false);
 
@@ -421,29 +590,7 @@ const BasicInfo = ({ navigation, route }) => {
     }
   }, [registerUserData, registerUserError]);
 
-  useEffect(() => {
-    if (updateProfileAtRegistrationData) {
-      console.log(
-        "updateProfileAtRegistrationData",
-        updateProfileAtRegistrationData
-      );
-      if (updateProfileAtRegistrationData.success) {
-        setSuccess(true);
-        setMessage(updateProfileAtRegistrationData.message);
-        setModalTitle("WOW");
-      }
-
-      // const values = Object.values(updateProfileAtRegistrationData.body.template)
-      // setRegistrationForm(values)
-    } else if (updateProfileAtRegistrationError) {
-      console.log(
-        "updateProfileAtRegistrationError",
-        updateProfileAtRegistrationError
-      );
-      setError(true);
-      // setMessage(updateProfileAtRegistrationError.data.message)
-    }
-  }, [updateProfileAtRegistrationData, updateProfileAtRegistrationError]);
+ 
   useEffect(() => {
     if (sendOtpData) {
       console.log("sendOtpData", sendOtpData);
@@ -452,6 +599,13 @@ const BasicInfo = ({ navigation, route }) => {
       console.log("sendOtpError", sendOtpError);
     }
   }, [sendOtpData, sendOtpError]);
+
+  const saveToken = async (data) => {
+    const token = data
+    const password = '17dec1998'
+
+    await Keychain.setGenericPassword(token, password);
+  }
 
   const handleTimer = () => {
     if (userMobile) {
@@ -489,6 +643,14 @@ const BasicInfo = ({ navigation, route }) => {
       else{
         setIsCorrectPincode(false)
       }
+  };
+
+  const modalWithBorderClose = () => {
+    setModalWithBorder(false);
+    setMessage('')
+  navigation.reset({ index: '0', routes: [{ name: 'Dashboard' }] })
+  // navigation.reset({ index: '0', routes: [{ name: 'MpinSetupScreen' }] })
+
   };
 
   const getData = async () => {
@@ -587,7 +749,9 @@ const BasicInfo = ({ navigation, route }) => {
 
   console.log("responseArray", responseArray);
   const modalClose = () => {
+    setModalWithBorder(false)
     setError(false);
+    setMessage("")
   };
 
   const getLocationFromPinCode = (pin) => {
@@ -871,6 +1035,37 @@ const BasicInfo = ({ navigation, route }) => {
     console.log("responseArraybody", body);
   };
 
+
+  const ModalContent = () => {
+    return (
+      <View style={{ width: '100%', alignItems: "center", justifyContent: "center" }}>
+        <View style={{ marginTop: 30, alignItems: 'center', maxWidth: '80%' }}>
+          <Icon name="check-circle" size={53} color={ternaryThemeColor} />
+          <PoppinsTextMedium style={{ fontSize: 27, fontWeight: '600', color: ternaryThemeColor, marginLeft: 5, marginTop: 5 }} content={"Success ! !"}></PoppinsTextMedium>
+          
+          <ActivityIndicator size={'small'} animating={true} color={ternaryThemeColor} />
+
+          <View style={{ marginTop: 10, marginBottom: 30 }}>
+            <PoppinsTextMedium style={{ fontSize: 16, fontWeight: '600', color: "#000000", marginLeft: 5, marginTop: 5, }} content={message}></PoppinsTextMedium>
+          </View>
+
+
+          {/* <View style={{ alignItems: 'center', marginBottom: 30 }}>
+            <ButtonOval handleOperation={modalWithBorderClose} backgroundColor="#000000" content="OK" style={{ color: 'white', paddingVertical: 4 }} />
+          </View> */}
+
+        </View>
+
+        <TouchableOpacity style={[{
+          backgroundColor: ternaryThemeColor, padding: 6, borderRadius: 5, position: 'absolute', top: -10, right: -10,
+        }]} onPress={modalWithBorderClose} >
+          <Close name="close" size={17} color="#ffffff" />
+        </TouchableOpacity>
+
+      </View>
+    )
+  }
+
   return (
     <View
       style={{
@@ -888,6 +1083,25 @@ const BasicInfo = ({ navigation, route }) => {
           openModal={error}
         ></ErrorModal>
       )}
+
+{successRegister && (
+        <MessageModalNavigate
+          modalClose={modalClose}
+          title={modalTitle}
+          message={message}
+          openModal={success}
+          navigateTo={
+            navigatingFrom === "Dashboard"
+          }
+          params={{
+            needsApproval: needsApproval,
+            userType: userType,
+            userId: userTypeId,
+            registrationRequired: registrationRequired,
+          }}
+        ></MessageModalNavigate>
+      )}
+
       {success && (
         <MessageModal
           modalClose={modalClose}
@@ -922,6 +1136,16 @@ const BasicInfo = ({ navigation, route }) => {
           }}
         ></MessageModal>
       )}
+
+<View style={{ marginHorizontal: 100 }}>
+        {openModalWithBorder &&
+          <ModalWithBorder
+            modalClose={modalWithBorderClose}
+            message={message}
+            openModal={openModalWithBorder}
+            comp={ModalContent}>
+          </ModalWithBorder>}
+      </View>
 
       <View
         style={{
