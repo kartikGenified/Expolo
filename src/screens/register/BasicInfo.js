@@ -362,6 +362,10 @@ const BasicInfo = ({ navigation, route }) => {
         // console.log("tempDrawerData", JSON.stringify(tempDrawerData))
         tempDrawerData &&  dispatch(setDrawerData(tempDrawerData[0]))
         setModalWithBorder(true)
+        setTimeout(() => {
+          setModalWithBorder(false)
+          navigation.reset({ index: '0', routes: [{ name: 'Dashboard' }] })
+        }, 3000);
 
       }
       

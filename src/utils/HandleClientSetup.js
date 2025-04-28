@@ -4,7 +4,7 @@
 export const clientName = "gautam-garments";
 export const clientID = 30;
 
-export const baseUrl ="http://saas-api-dev.genefied.in/"  //"https://saas.genefied.in/"  "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/"" "https://saas.genefied.in/""
+export const baseUrl ="https://saas.genefied.in/"  //"https://saas.genefied.in/"  "http://saas-api-dev.genefied.in/"  "http://sales-saas-api.genefied.in/"" "https://saas.genefied.in/""
 
 //icons and images
 export const appIcon = require("../../assets/images/logoExpolo.png");
